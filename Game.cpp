@@ -31,12 +31,19 @@ void Game::startMenu() {
     string menu;
     bool running = true;
     while (running) {
+        cout << "TRON GAME" << endl;
+        cout << endl;
+        cout << "1. Start new game" << endl;
+        cout << "2. Quit" << endl;
+        cout << endl;
 
         clearScreen();
         cin >> menu;
         if (menu == "1") {
             run();
             running = false;
+        } else if (menu == "2") {
+            return;
         } else {
             cout << "Wrong command. Try again." << endl;
         }
