@@ -82,7 +82,8 @@ bool Game::checkOver(Player first_player, Map map, Player second_computer) {
     return first_player.getX() == 0 || first_player.getX() == map.width - 1
            || first_player.getY() == -1 || first_player.getY() == map.height
            || first_player.tail[first_player.getX()][first_player.getY()]
-           || second_computer.tail[first_player.getX()][first_player.getY()];
+           || second_computer.tail[first_player.getX()][first_player.getY()]
+           || (first_player.getX() == second_computer.getX() && first_player.getY() == second_computer.getY());
 
 }
 
