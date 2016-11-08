@@ -6,6 +6,7 @@
 class Player {
 public:
     Player(int, int, Direction);
+    Player();
 
     int getX();
 

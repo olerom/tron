@@ -1,8 +1,8 @@
 #include "Player.h"
 
 Player::Player(int x, int y, Direction direction) : head_x(x), head_y(y), direction(direction) {
-    for (int i = 0; i < 15; i++){
-        for (int j = 0; j < 60; j++){
+    for (int i = 0; i < 15; i++) {
+        for (int j = 0; j < 60; j++) {
             tail[j][i] = false;
         }
     }
@@ -30,4 +30,12 @@ void Player::setDirection(Direction direction) {
 
 Direction Player::getDirection() {
     return this->direction;
+}
+
+Player::Player() : head_x(10), head_y(10), direction(RIGHT) {
+    for (int i = 0; i < 15; i++) {
+        for (int j = 0; j < 60; j++) {
+            tail[j][i] = false;
+        }
+    }
 }
