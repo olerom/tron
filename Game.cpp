@@ -52,7 +52,8 @@ void Game::startMenu() {
 
 //TODO clearScreen, спросить про TERM variable not set -- atm $TERM=xterm, important!
 void Game::clearScreen() {
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    system("clear");
 }
 
 Player Game::logic(Player player) {

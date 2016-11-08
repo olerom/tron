@@ -6,6 +6,7 @@
 class Player {
 public:
     Player(int, int, Direction);
+
     Player();
 
     int getX();
@@ -21,7 +22,7 @@ public:
     void setDirection(Direction);
 
     bool tail[60][15];
-private:
+protected:
 
     int head_x;
     int head_y;
