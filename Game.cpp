@@ -1,6 +1,14 @@
 #include "Game.h"
 #include "Map.h"
 #include "Player.h"
+#include "User.h"
+
+//
+
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+
 
 using namespace std;
 
@@ -53,13 +61,28 @@ void Game::startMenu() {
 //TODO clearScreen, спросить про TERM variable not set -- atm $TERM=xterm, important!
 void Game::clearScreen() {
 //    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    system("clear");
+
+    printf("\033[2J");
+    printf("\033[0;0f");
 }
 
 Player Game::logic(Player player) {
     player.tail[player.getX()][player.getY()] = true;
 
     Direction direction;
+
+//    int res = myGetch();
+//    if (res == 'a'){
+//        direction = LEFT;
+//    } else if (res == 'd'){
+//        direction = RIGHT;
+//    } else if (res == 'w'){
+//        direction = UP;
+//    } else if (res == 's'){
+//        direction = DOWN;
+//    } else {
+//        direction = player.getDirection();
+//    }
 
     char choice;
     cin >> choice;
@@ -140,4 +163,18 @@ Player Game::choiceMove(Player player, Direction direction) {
     }
 
     return player;
+}
+
+
+int Game::myGetch() {
+    struct termios oldt,
+            newt;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return ch;
 }

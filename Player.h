@@ -22,8 +22,8 @@ public:
     void setDirection(Direction);
 
     bool tail[60][15];
-protected:
 
+protected:
     int head_x;
     int head_y;
     Direction direction;
