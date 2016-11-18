@@ -8,10 +8,13 @@ void Game::run() {
 
     while (true) {
         clearScreen();
+
         map.draw(first_player, computer);
         computer = computerLogic(computer, first_player, map);
         first_player = logic(first_player);
+
         usleep(60000);
+
         if (checkOver(first_player, map, computer)) {
             std::cout << "GAME OVER" << std::endl;
             break;
@@ -20,39 +23,76 @@ void Game::run() {
             break;
         }
     }
-
-    this->startMenu();
 }
 
-void Game::startMenu() {
+void Game::startMenu(int switcher) {
 
     bool running = true;
     bool wrongCommand = false;
     while (running) {
         clearScreen();
-        if (!wrongCommand) {
-            std::cout << "TRON GAME\n";
-        } else {
-            std::cout << "Wrong command. Try again.\n";
-        }
+        std::cout << " ─────────────────────────────────────────────────────────────────────────\n"
+                " ─██████████████─████████████████───██████████████─██████──────────██████─\n"
+                " ─██░░░░░░░░░░██─██░░░░░░░░░░░░██───██░░░░░░░░░░██─██░░██████████──██░░██─\n"
+                " ─██████░░██████─██░░████████░░██───██░░██████░░██─██░░░░░░░░░░██──██░░██─\n"
+                " ─────██░░██─────██░░██────██░░██───██░░██──██░░██─██░░██████░░██──██░░██─\n"
+                " ─────██░░██─────██░░████████░░██───██░░██──██░░██─██░░██──██░░██──██░░██─\n"
+                " ─────██░░██─────██░░░░░░░░░░░░██───██░░██──██░░██─██░░██──██░░██──██░░██─\n"
+                " ─────██░░██─────██░░██████░░████───██░░██──██░░██─██░░██──██░░██──██░░██─\n"
+                " ─────██░░██─────██░░██──██░░██─────██░░██──██░░██─██░░██──██░░██████░░██─\n"
+                " ─────██░░██─────██░░██──██░░██████─██░░██████░░██─██░░██──██░░░░░░░░░░██─\n"
+                " ─────██░░██─────██░░██──██░░░░░░██─██░░░░░░░░░░██─██░░██──██████████░░██─\n"
+                " ─────██████─────██████──██████████─██████████████─██████──────────██████─\n"
+                " ─────────────────────────────────────────────────────────────────────────\n";
 
-        std::cout << "1. Start new game\n";
-        std::cout << "2. Quit\n";
+        switch (switcher) {
+            case 1:
+                std::cout << "                          << Start new game >>\n";
+                std::cout << "                              High scores\n";
+                std::cout << "                                  Quit\n";
+                break;
+            case 2:
+                std::cout << "                             Start new game \n";
+                std::cout << "                           << High scores >>\n";
+                std::cout << "                                  Quit\n";
+                break;
+            case 3:
+                std::cout << "                             Start new game \n";
+                std::cout << "                              High scores \n";
+                std::cout << "                               << Quit >>\n";
+                break;
+        }
 
         int menu = myGetch();
         switch (menu) {
-            case '1':
-                this->run();
+            case 'w':
+                if (switcher != 1) {
+                    this->startMenu(switcher - 1);
+                } else {
+                    this->startMenu(3);
+                }
                 break;
-            case '2':
-                running = false;
+            case 's':
+                if (switcher != 3) {
+                    this->startMenu(switcher + 1);
+                } else {
+                    this->startMenu(1);
+                }
                 break;
-            default:
-                wrongCommand = true;
+
+            case ' ':
+                if (switcher == 1) {
+                    this->run();
+                } else if (switcher == 2) {
+                    //TODO highscore
+                } else if (switcher == 3) {
+                    _exit(0);
+                }
                 break;
         }
     }
 }
+
 
 void Game::clearScreen() {
     printf("\033[2J");

@@ -6,6 +6,6 @@
 
 int main(void) {
     Game game;
-    game.startMenu();
+    game.startMenu(1);
     return 0;
 }

@@ -13,7 +13,7 @@ class Game {
 public:
     void run();
 
-    void startMenu();
+    void startMenu(int switcher);
 
     void clearScreen();
 
