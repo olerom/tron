@@ -1,12 +1,13 @@
 #include "Game.h"
-#include "Map.h"
-#include "Player.h"
-#include "User.h"
 
 //**
-#include <stdio.h>
 #include <termios.h>
-#include <unistd.h>
+#include <stdio.h>
+#include <sys/select.h>
+#include <termios.h>
+#include <stropts.h>
+#include <asm/ioctls.h>
+
 //**
 
 using namespace std;
@@ -15,13 +16,14 @@ void Game::run() {
     clearScreen();
     Map map(15, 60);
     Player first_player(7, 7, RIGHT);
-    Player computer(25, 7, LEFT);
+    Player computer(25, 8, LEFT);
 
     while (true) {
         clearScreen();
         map.draw(first_player, computer);
         computer = computerLogic(computer, first_player, map);
         first_player = logic(first_player);
+        sleep(0.1);
         if (checkOver(first_player, map, computer)) {
             cout << "GAME OVER" << endl;
             break;
@@ -37,9 +39,14 @@ void Game::startMenu() {
 
     string menu;
     bool running = true;
+    bool wrongCommand = false;
     while (running) {
         clearScreen();
-        cout << "TRON GAME" << endl;
+        if (!wrongCommand) {
+            cout << "TRON GAME" << endl;
+        } else {
+            cout << "Wrong command. Try again." << endl;
+        }
         cout << endl;
         cout << "1. Start new game" << endl;
         cout << "2. Quit" << endl;
@@ -52,7 +59,7 @@ void Game::startMenu() {
         } else if (menu == "2") {
             return;
         } else {
-            cout << "Wrong command. Try again." << endl;
+            wrongCommand = true;
         }
     }
 }
@@ -67,6 +74,7 @@ Player Game::logic(Player player) {
 
     Direction direction;
 
+//    if (myKbhit()) {
     int res = myGetch();
     if (res == 'a') {
         direction = LEFT;
@@ -79,25 +87,6 @@ Player Game::logic(Player player) {
     } else {
         direction = player.getDirection();
     }
-
-//    char choice;
-//    cin >> choice;
-//    switch (choice) {
-//        case 'a':
-//            direction = LEFT;
-//            break;
-//        case 'd':
-//            direction = RIGHT;
-//            break;
-//        case 'w':
-//            direction = UP;
-//            break;
-//        case 's':
-//            direction = DOWN;
-//            break;
-//        default:
-//            direction = player.getDirection();
-//            break;
 //    }
 
     player = choiceMove(player, direction);
@@ -172,4 +161,23 @@ int Game::myGetch() {
     ch = getchar();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
+}
+
+int Game::myKbhit() {
+    static const int STDIN = 0;
+    static bool initialized = false;
+
+    if (!initialized) {
+        // Use termios to turn off line buffering
+        termios term;
+        tcgetattr(STDIN, &term);
+        term.c_lflag &= ~ICANON;
+        tcsetattr(STDIN, TCSANOW, &term);
+        setbuf(stdin, NULL);
+        initialized = true;
+    }
+
+    int bytesWaiting;
+    ioctl(STDIN, FIONREAD, &bytesWaiting);
+    return bytesWaiting;
 }

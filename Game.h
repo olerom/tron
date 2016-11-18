@@ -27,6 +27,8 @@ public:
     Player choiceMove(Player player, Direction direction);
 
     int myGetch();
+
+    int myKbhit();
 };
 
 #endif //TRON_GAME_H
