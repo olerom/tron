@@ -4,13 +4,13 @@ using namespace std;
 
 void Map::draw(Player firstPlayer, Player secondPlayer) {
     for (int i = 0; i < width; i++) {
-        cout << ".";
+        cout << "_";
     }
     cout << endl;
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (j == 0 || j == width - 1) {
-                cout << ".";
+                cout << "|";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
                     cout << "O";
@@ -28,7 +28,7 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
         cout << endl;
     }
     for (int i = 0; i < width; i++) {
-        cout << ".";
+        cout << "_";
     }
     cout << endl;
 }
