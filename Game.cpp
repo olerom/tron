@@ -3,12 +3,6 @@
 #include "Player.h"
 #include "User.h"
 
-//
-
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-
 
 using namespace std;
 
@@ -39,13 +33,13 @@ void Game::startMenu() {
     string menu;
     bool running = true;
     while (running) {
+        clearScreen();
         cout << "TRON GAME" << endl;
         cout << endl;
         cout << "1. Start new game" << endl;
         cout << "2. Quit" << endl;
         cout << endl;
 
-        clearScreen();
         cin >> menu;
         if (menu == "1") {
             run();
@@ -60,8 +54,6 @@ void Game::startMenu() {
 
 //TODO clearScreen, спросить про TERM variable not set -- atm $TERM=xterm, important!
 void Game::clearScreen() {
-//    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
     printf("\033[2J");
     printf("\033[0;0f");
 }
@@ -71,14 +63,14 @@ Player Game::logic(Player player) {
 
     Direction direction;
 
-//    int res = myGetch();
-//    if (res == 'a'){
+//    int res = getchar();
+//    if (res == 'a') {
 //        direction = LEFT;
-//    } else if (res == 'd'){
+//    } else if (res == 'd') {
 //        direction = RIGHT;
-//    } else if (res == 'w'){
+//    } else if (res == 'w') {
 //        direction = UP;
-//    } else if (res == 's'){
+//    } else if (res == 's') {
 //        direction = DOWN;
 //    } else {
 //        direction = player.getDirection();
@@ -163,18 +155,4 @@ Player Game::choiceMove(Player player, Direction direction) {
     }
 
     return player;
-}
-
-
-int Game::myGetch() {
-    struct termios oldt,
-            newt;
-    int ch;
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    ch = getchar();
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-    return ch;
 }
