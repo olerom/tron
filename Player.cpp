@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(int x, int y, Direction direction) : head_x(x), head_y(y), direction(direction) {
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 60; j++) {
             tail[j][i] = false;
         }

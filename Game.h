@@ -1,14 +1,13 @@
-//
-// Created by oleg on 07.11.16.
-//
-
 #ifndef TRON_GAME_H
 #define TRON_GAME_H
 
-
-#include "stdafx.h"
 #include "Player.h"
 #include "Map.h"
+
+#include "stdafx.h"
+#include <termios.h>
+#include <stropts.h>
+#include <asm/ioctls.h>
 
 class Game {
 public:

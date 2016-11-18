@@ -1,36 +1,35 @@
 #include "Map.h"
 
-using namespace std;
 
 void Map::draw(Player firstPlayer, Player secondPlayer) {
-    for (int i = 0; i < width; i++) {
-        cout << "_";
+    for (int i = 0; i < this->width; i++) {
+        std::cout << "#";
     }
-    cout << endl;
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (j == 0 || j == width - 1) {
-                cout << "|";
+    std::cout << std::endl;
+    for (int i = 0; i < this->height; i++) {
+        for (int j = 0; j < this->width; j++) {
+            if (j == 0 || j == this->width - 1) {
+                std::cout << "#";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
-                    cout << "O";
+                    std::cout << "O";
                 } else if (firstPlayer.tail[j][i]) {
-                    cout << "o";
+                    std::cout << "o";
                 } else if (secondPlayer.getY() == i && secondPlayer.getX() == j) {
-                    cout << "@";
+                    std::cout << "@";
                 } else if (secondPlayer.tail[j][i]) {
-                    cout << "o";
+                    std::cout << "o";
                 } else {
-                    cout << " ";
+                    std::cout << " ";
                 }
             }
         }
-        cout << endl;
+        std::cout << std::endl;
     }
-    for (int i = 0; i < width; i++) {
-        cout << "_";
+    for (int i = 0; i < this->width; i++) {
+        std::cout << "#";
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 Map::Map(int height, int width) {

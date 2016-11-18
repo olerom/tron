@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Game.h"
 
 //TODO структура проекта
@@ -6,9 +5,7 @@
 //TODO cocos2dx?
 
 int main(void) {
-
     Game game;
     game.startMenu();
-
     return 0;
 }

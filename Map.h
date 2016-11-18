@@ -1,7 +1,3 @@
-//
-// Created by oleg on 07.11.16.
-//
-
 #ifndef TRON_MAP_H
 #define TRON_MAP_H
 
@@ -12,13 +8,13 @@
 
 class Map {
 public:
-    int width;
-    int height;
-
     Map(int height, int width);
 
     void draw(Player firstPlayer, Player secondPlayer);
+
+    int width;
+    int height;
 };
 
 
-#endif //TRON_MAP_H
+#endif

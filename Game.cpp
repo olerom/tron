@@ -1,22 +1,10 @@
 #include "Game.h"
 
-//**
-#include <termios.h>
-#include <stdio.h>
-#include <sys/select.h>
-#include <termios.h>
-#include <stropts.h>
-#include <asm/ioctls.h>
-
-//**
-
-using namespace std;
-
 void Game::run() {
     clearScreen();
-    Map map(15, 60);
-    Player first_player(7, 7, RIGHT);
-    Player computer(25, 8, LEFT);
+    Map map(20, 60);
+    Player first_player(5, 10, RIGHT);
+    Player computer(55, 10, LEFT);
 
     while (true) {
         clearScreen();
@@ -25,41 +13,43 @@ void Game::run() {
         first_player = logic(first_player);
         usleep(60000);
         if (checkOver(first_player, map, computer)) {
-            cout << "GAME OVER" << endl;
+            std::cout << "GAME OVER" << std::endl;
             break;
         } else if (checkOver(computer, map, first_player)) {
-            cout << "YOU WON" << endl;
+            std::cout << "YOU WON" << std::endl;
             break;
         }
     }
 
+    this->startMenu();
 }
 
 void Game::startMenu() {
 
-    string menu;
     bool running = true;
     bool wrongCommand = false;
     while (running) {
         clearScreen();
         if (!wrongCommand) {
-            cout << "TRON GAME" << endl;
+            std::cout << "TRON GAME\n";
         } else {
-            cout << "Wrong command. Try again." << endl;
+            std::cout << "Wrong command. Try again.\n";
         }
-        cout << endl;
-        cout << "1. Start new game" << endl;
-        cout << "2. Quit" << endl;
-        cout << endl;
 
-        cin >> menu;
-        if (menu == "1") {
-            run();
-            running = false;
-        } else if (menu == "2") {
-            return;
-        } else {
-            wrongCommand = true;
+        std::cout << "1. Start new game\n";
+        std::cout << "2. Quit\n";
+
+        int menu = myGetch();
+        switch (menu) {
+            case '1':
+                this->run();
+                break;
+            case '2':
+                running = false;
+                break;
+            default:
+                wrongCommand = true;
+                break;
         }
     }
 }
@@ -72,7 +62,7 @@ void Game::clearScreen() {
 Player Game::logic(Player player) {
     player.tail[player.getX()][player.getY()] = true;
 
-    Direction direction;
+    Direction direction = player.getDirection();
 
     if (myKbhit()) {
         int res = myGetch();
@@ -85,8 +75,6 @@ Player Game::logic(Player player) {
         } else if (res == 's') {
             direction = DOWN;
         }
-    } else {
-        direction = player.getDirection();
     }
 
     player = choiceMove(player, direction);
@@ -149,6 +137,9 @@ Player Game::choiceMove(Player player, Direction direction) {
 
     return player;
 }
+
+//Unknown solution from internet, works somehow.
+//TODO спросить про использование функций.
 
 int Game::myGetch() {
     struct termios oldt,
