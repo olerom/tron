@@ -3,6 +3,11 @@
 #include "Player.h"
 #include "User.h"
 
+//**
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+//**
 
 using namespace std;
 
@@ -52,7 +57,6 @@ void Game::startMenu() {
     }
 }
 
-//TODO clearScreen, спросить про TERM variable not set -- atm $TERM=xterm, important!
 void Game::clearScreen() {
     printf("\033[2J");
     printf("\033[0;0f");
@@ -63,38 +67,38 @@ Player Game::logic(Player player) {
 
     Direction direction;
 
-//    int res = getchar();
-//    if (res == 'a') {
-//        direction = LEFT;
-//    } else if (res == 'd') {
-//        direction = RIGHT;
-//    } else if (res == 'w') {
-//        direction = UP;
-//    } else if (res == 's') {
-//        direction = DOWN;
-//    } else {
-//        direction = player.getDirection();
-//    }
-
-    char choice;
-    cin >> choice;
-    switch (choice) {
-        case 'a':
-            direction = LEFT;
-            break;
-        case 'd':
-            direction = RIGHT;
-            break;
-        case 'w':
-            direction = UP;
-            break;
-        case 's':
-            direction = DOWN;
-            break;
-        default:
-            direction = player.getDirection();
-            break;
+    int res = myGetch();
+    if (res == 'a') {
+        direction = LEFT;
+    } else if (res == 'd') {
+        direction = RIGHT;
+    } else if (res == 'w') {
+        direction = UP;
+    } else if (res == 's') {
+        direction = DOWN;
+    } else {
+        direction = player.getDirection();
     }
+
+//    char choice;
+//    cin >> choice;
+//    switch (choice) {
+//        case 'a':
+//            direction = LEFT;
+//            break;
+//        case 'd':
+//            direction = RIGHT;
+//            break;
+//        case 'w':
+//            direction = UP;
+//            break;
+//        case 's':
+//            direction = DOWN;
+//            break;
+//        default:
+//            direction = player.getDirection();
+//            break;
+//    }
 
     player = choiceMove(player, direction);
     return player;
@@ -155,4 +159,17 @@ Player Game::choiceMove(Player player, Direction direction) {
     }
 
     return player;
+}
+
+int Game::myGetch() {
+    struct termios oldt,
+            newt;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return ch;
 }

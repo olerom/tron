@@ -25,6 +25,8 @@ public:
     Player computerLogic(Player player, Player computer, Map map);
 
     Player choiceMove(Player player, Direction direction);
+
+    int myGetch();
 };
 
 #endif //TRON_GAME_H
