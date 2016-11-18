@@ -23,7 +23,7 @@ void Game::run() {
         map.draw(first_player, computer);
         computer = computerLogic(computer, first_player, map);
         first_player = logic(first_player);
-        sleep(0.1);
+        usleep(60000);
         if (checkOver(first_player, map, computer)) {
             cout << "GAME OVER" << endl;
             break;
@@ -74,20 +74,20 @@ Player Game::logic(Player player) {
 
     Direction direction;
 
-//    if (myKbhit()) {
-    int res = myGetch();
-    if (res == 'a') {
-        direction = LEFT;
-    } else if (res == 'd') {
-        direction = RIGHT;
-    } else if (res == 'w') {
-        direction = UP;
-    } else if (res == 's') {
-        direction = DOWN;
+    if (myKbhit()) {
+        int res = myGetch();
+        if (res == 'a') {
+            direction = LEFT;
+        } else if (res == 'd') {
+            direction = RIGHT;
+        } else if (res == 'w') {
+            direction = UP;
+        } else if (res == 's') {
+            direction = DOWN;
+        }
     } else {
         direction = player.getDirection();
     }
-//    }
 
     player = choiceMove(player, direction);
     return player;
