@@ -28,7 +28,6 @@ void Game::run() {
 void Game::startMenu(int switcher) {
 
     bool running = true;
-    bool wrongCommand = false;
     while (running) {
         clearScreen();
         std::cout << " ─────────────────────────────────────────────────────────────────────────\n"
@@ -43,7 +42,8 @@ void Game::startMenu(int switcher) {
                 " ─────██░░██─────██░░██──██░░██████─██░░██████░░██─██░░██──██░░░░░░░░░░██─\n"
                 " ─────██░░██─────██░░██──██░░░░░░██─██░░░░░░░░░░██─██░░██──██████████░░██─\n"
                 " ─────██████─────██████──██████████─██████████████─██████──────────██████─\n"
-                " ─────────────────────────────────────────────────────────────────────────\n";
+                " ─────────────────────────────────────────────────────────────────────────\n"
+                "\n";
 
         switch (switcher) {
             case 1:
@@ -79,7 +79,6 @@ void Game::startMenu(int switcher) {
                     this->startMenu(1);
                 }
                 break;
-
             case ' ':
                 if (switcher == 1) {
                     this->run();
@@ -106,13 +105,13 @@ Player Game::logic(Player player) {
 
     if (myKbhit()) {
         int res = myGetch();
-        if (res == 'a') {
+        if (res == 'a' && direction != RIGHT) {
             direction = LEFT;
-        } else if (res == 'd') {
+        } else if (res == 'd' && direction != LEFT) {
             direction = RIGHT;
-        } else if (res == 'w') {
+        } else if (res == 'w' && direction != DOWN) {
             direction = UP;
-        } else if (res == 's') {
+        } else if (res == 's' && direction != UP) {
             direction = DOWN;
         }
     }
