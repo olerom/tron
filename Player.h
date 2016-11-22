@@ -23,11 +23,12 @@ public:
 
     bool tail[60][20];
 
+    void choiceMove(Direction direction);
+
 protected:
     int head_x;
     int head_y;
     Direction direction;
 };
-
 
 #endif //TRON_PLAYER_H

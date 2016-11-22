@@ -3,8 +3,6 @@
 
 #include "stdafx.h"
 #include "Player.h"
-#include "User.h"
-#include "Computer.h"
 
 class Map {
 public:

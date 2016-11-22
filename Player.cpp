@@ -39,3 +39,27 @@ Player::Player() : head_x(10), head_y(10), direction(RIGHT) {
         }
     }
 }
+
+void Player::choiceMove(Direction direction) {
+
+    switch (direction) {
+        case LEFT:
+            this->setX(this->getX() - 1);
+            this->setDirection(LEFT);
+            break;
+        case RIGHT:
+            this->setX(this->getX() + 1);
+            this->setDirection(RIGHT);
+            break;
+        case UP:
+            this->setY(this->getY() - 1);
+            this->setDirection(UP);
+            break;
+        case DOWN:
+            this->setY(this->getY() + 1);
+            this->setDirection(DOWN);
+            break;
+    }
+
+}
+

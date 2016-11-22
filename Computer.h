@@ -1,18 +1,18 @@
-//
-// Created by oleg on 08.11.16.
-//
-
 #ifndef TRON_COMPUTER_H
 #define TRON_COMPUTER_H
 
 #include "stdafx.h"
-#include "Player.h"
+#include "Map.h"
+#include "Game.h"
 
-class Computer : Player {
+class Computer : public Player {
 
 public:
     Computer(int x, int y, Direction direction);
 
+    Computer(Player player);
+
+    void move(Player player, Map map);
 
 };
 

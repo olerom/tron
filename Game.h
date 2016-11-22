@@ -3,6 +3,8 @@
 
 #include "Player.h"
 #include "Map.h"
+#include "Computer.h"
+#include "User.h"
 
 #include "stdafx.h"
 #include <termios.h>
@@ -17,17 +19,13 @@ public:
 
     void clearScreen();
 
-    bool checkOver(Player first_player, Map map, Player second_computer);
+    bool static checkOver(Player first_player, Map map, Player second_computer);
 
-    Player logic(Player);
+    Player logic(Player player);
 
-    Player computerLogic(Player player, Player computer, Map map);
+    int static myGetch();
 
-    Player choiceMove(Player player, Direction direction);
-
-    int myGetch();
-
-    int myKbhit();
+    int static myKbhit();
 };
 
 #endif //TRON_GAME_H
