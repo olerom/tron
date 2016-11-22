@@ -9,7 +9,7 @@ void Game::run() {
     while (true) {
         clearScreen();
 
-        map.draw(computer, player);
+        map.draw(player, computer);
         computer.move(player, map);
         player.logic();
 
@@ -95,28 +95,6 @@ void Game::startMenu(int switcher) {
 void Game::clearScreen() {
     printf("\033[2J");
     printf("\033[0;0f");
-}
-
-Player Game::logic(Player player) {
-    player.tail[player.getX()][player.getY()] = true;
-
-    Direction direction = player.getDirection();
-
-    if (myKbhit()) {
-        int res = myGetch();
-        if (res == 'a' && direction != RIGHT) {
-            direction = LEFT;
-        } else if (res == 'd' && direction != LEFT) {
-            direction = RIGHT;
-        } else if (res == 'w' && direction != DOWN) {
-            direction = UP;
-        } else if (res == 's' && direction != UP) {
-            direction = DOWN;
-        }
-    }
-
-    player.choiceMove(direction);
-    return player;
 }
 
 bool Game::checkOver(Player first_player, Map map, Player second_computer) {

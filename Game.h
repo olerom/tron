@@ -21,8 +21,6 @@ public:
 
     bool static checkOver(Player first_player, Map map, Player second_computer);
 
-    Player logic(Player player);
-
     int static myGetch();
 
     int static myKbhit();
