@@ -14,7 +14,7 @@ void Game::run() {
         player.logic();
 
         if (checkOver(player, map, computer)) {
-            std::cout << "GAME OVER" << std::endl;
+            std::cout << "YOU LOSE" << std::endl;
             break;
         } else if (checkOver(computer, map, player)) {
             std::cout << "YOU WON" << std::endl;
@@ -23,6 +23,8 @@ void Game::run() {
 
         usleep(60000);
     }
+
+    _exit(0);
 }
 
 void Game::startMenu(int switcher) {

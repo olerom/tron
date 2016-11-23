@@ -3,13 +3,13 @@
 
 void Map::draw(Player firstPlayer, Player secondPlayer) {
     for (int i = 0; i < this->width; i++) {
-        std::cout << "#";
+        std::cout << "▄";
     }
     std::cout << std::endl;
     for (int i = 0; i < this->height; i++) {
         for (int j = 0; j < this->width; j++) {
             if (j == 0 || j == this->width - 1) {
-                std::cout << "#";
+                std::cout << "█";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
                     std::cout << "O";
@@ -27,7 +27,7 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
         std::cout << std::endl;
     }
     for (int i = 0; i < this->width; i++) {
-        std::cout << "#";
+        std::cout << "▀";
     }
     std::cout << std::endl;
 }
