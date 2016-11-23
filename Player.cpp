@@ -62,4 +62,3 @@ void Player::choiceMove(Direction direction) {
     }
 
 }
-
