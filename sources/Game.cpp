@@ -1,17 +1,18 @@
 #include "Game.h"
 
 void Game::run() {
-    clearScreen();
+
     Map map(20, 60);
-    Computer computer(55, 10, LEFT);
-    User player(5, 10, RIGHT);
+    User player(map.width >> 2, map.height >> 1, RIGHT);
+    Computer computer(3 * (map.width >> 2), map.height >> 1, LEFT);
 
     while (true) {
         clearScreen();
 
         map.draw(player, computer);
-        computer.move(player, map);
         player.logic();
+        computer.move(player, map);
+
 
         if (checkOver(player, map, computer)) {
             std::cout << "YOU LOSE" << std::endl;
@@ -21,7 +22,7 @@ void Game::run() {
             break;
         }
 
-        usleep(60000);
+        usleep(150000);
     }
 
     _exit(0);
@@ -99,13 +100,13 @@ void Game::clearScreen() {
     printf("\033[0;0f");
 }
 
-bool Game::checkOver(Player first_player, Map map, Player second_computer) {
+bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
 
-    return first_player.getX() == 0 || first_player.getX() == map.width - 1
-           || first_player.getY() == -1 || first_player.getY() == map.height
-           || first_player.tail[first_player.getX()][first_player.getY()]
-           || second_computer.tail[first_player.getX()][first_player.getY()]
-           || (first_player.getX() == second_computer.getX() && first_player.getY() == second_computer.getY());
+    return firstPlayer.getX() == 0 || firstPlayer.getX() == map.width - 1
+           || firstPlayer.getY() == -1 || firstPlayer.getY() == map.height
+           || firstPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
+           || secondPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
+           || (firstPlayer.getX() == secondPlayer.getX() && firstPlayer.getY() == secondPlayer.getY());
 
 }
 

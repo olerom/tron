@@ -19,7 +19,7 @@ public:
 
     void clearScreen();
 
-    bool static checkOver(Player first_player, Map map, Player second_computer);
+    bool static checkOver(Player firstPlayer, Map map, Player secondPlayer);
 
     int static myGetch();
 

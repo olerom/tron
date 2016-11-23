@@ -5,6 +5,7 @@
 //TODO delete stdafx?
 //TODO count score
 //TODO make gitignore
+//TODO инкапсулировать все что можно
 
 int main(void) {
     Game game;

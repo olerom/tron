@@ -12,6 +12,8 @@ void Computer::move(Player player, Map map) {
     this->choiceMove(direction);
 }
 
+//TODO перегрузить оператор присваивания || сделать нормальным checkover
+
 Direction Computer::checkDirection(Player player, Map map) {
     Direction direction = this->getDirection();
 
