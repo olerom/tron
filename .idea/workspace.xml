@@ -14,23 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0e66602-1711-4922-8fdd-2f22daf31796" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sources/CMakeLists.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Computer.cpp" afterPath="$PROJECT_DIR$/sources/Computer.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Computer.h" afterPath="$PROJECT_DIR$/sources/Computer.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Game.cpp" afterPath="$PROJECT_DIR$/sources/Game.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Game.h" afterPath="$PROJECT_DIR$/sources/Game.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Map.cpp" afterPath="$PROJECT_DIR$/sources/Map.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Map.h" afterPath="$PROJECT_DIR$/sources/Map.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Player.cpp" afterPath="$PROJECT_DIR$/sources/Player.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Player.h" afterPath="$PROJECT_DIR$/sources/Player.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/User.cpp" afterPath="$PROJECT_DIR$/sources/User.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/User.h" afterPath="$PROJECT_DIR$/sources/User.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/sources/main.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/stdafx.h" afterPath="$PROJECT_DIR$/sources/stdafx.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/tron.iml" afterPath="$PROJECT_DIR$/.idea/tron.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="tron.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -190,7 +174,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1366" />
     <option name="y" value="24" />
     <option name="width" value="1366" />
     <option name="height" value="701" />
@@ -493,12 +476,12 @@
       <workItem from="1479804161036" duration="1073000" />
       <workItem from="1479812958239" duration="9354000" />
       <workItem from="1479844110010" duration="5936000" />
-      <workItem from="1479910238046" duration="1399000" />
+      <workItem from="1479910238046" duration="1809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42802000" />
+    <option name="totallyTimeSpent" value="43212000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +493,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="24" width="1366" height="701" extended-state="6" />
+    <frame x="0" y="24" width="1366" height="701" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21444528" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -520,7 +503,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19826087" sideWeight="0.5026061" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13565217" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26956522" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944155" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20521739" sideWeight="0.4973939" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
