@@ -8,7 +8,7 @@
 class Computer : public Player {
 
 public:
-    Computer(int x, int y, Direction direction);
+    Computer(int x, int y, Direction direction, int score);
 
     Computer(Player player);
 

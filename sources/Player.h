@@ -5,13 +5,17 @@
 
 class Player {
 public:
-    Player(int, int, Direction);
+    Player(int, int, Direction, int);
 
     Player();
 
     int getX();
 
     int getY();
+
+    int getScore();
+
+    void upScore();
 
     void setX(int);
 
@@ -26,6 +30,7 @@ public:
     void choiceMove(Direction direction);
 
 protected:
+    int score;
     int head_x;
     int head_y;
     Direction direction;

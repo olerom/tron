@@ -1,10 +1,10 @@
 #include "Game.h"
 
-void Game::run() {
+void Game::run(int firstScore, int secondScore) {
 
     Map map(20, 60);
-    User player(map.width >> 2, map.height >> 1, RIGHT);
-    Computer computer(3 * (map.width >> 2), map.height >> 1, LEFT);
+    User player(map.width >> 2, map.height >> 1, RIGHT, firstScore);
+    Computer computer(3 * (map.width >> 2), map.height >> 1, LEFT, secondScore);
 
     while (true) {
         clearScreen();
@@ -13,12 +13,19 @@ void Game::run() {
         player.logic();
         computer.move(player, map);
 
-
         if (checkOver(player, map, computer)) {
-            std::cout << "YOU LOSE" << std::endl;
-            break;
+            computer.upScore();
+            run(player.getScore(), computer.getScore());
         } else if (checkOver(computer, map, player)) {
+            player.upScore();
+            run(player.getScore(), computer.getScore());
+        }
+
+        if (player.getScore() == 3) {
             std::cout << "YOU WON" << std::endl;
+            break;
+        } else if (computer.getScore() == 3) {
+            std::cout << "YOU LOSE" << std::endl;
             break;
         }
 
@@ -83,7 +90,7 @@ void Game::startMenu(int switcher) {
                 break;
             case ' ':
                 if (switcher == 1) {
-                    this->run();
+                    this->run(0, 0);
                 } else if (switcher == 2) {
                     //TODO highscore
                 } else if (switcher == 3) {

@@ -2,6 +2,14 @@
 
 
 void Map::draw(Player firstPlayer, Player secondPlayer) {
+    // Be careful here later:
+    std::cout << "First player: " << firstPlayer.getScore();
+    for (int i = 0; i < this->width - 31; i++) {
+        std::cout << " ";
+    }
+    std::cout << "Second player: " << secondPlayer.getScore() << std::endl;
+    // To here
+
     for (int i = 0; i < this->width; i++) {
         std::cout << "▄";
     }
