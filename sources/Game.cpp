@@ -22,7 +22,7 @@ void Game::run() {
             break;
         }
 
-        usleep(150000);
+        usleep(60000);
     }
 
     _exit(0);

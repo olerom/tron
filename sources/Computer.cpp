@@ -12,14 +12,14 @@ void Computer::move(Player player, Map map) {
     this->choiceMove(direction);
 }
 
-//TODO перегрузить оператор присваивания || сделать нормальным checkover
+//TODO перегрузить оператор присваивания || сделать нормальным checkover || Map c другими полями -- Спросить короче
 
 Direction Computer::checkDirection(Player player, Map map) {
     Direction direction = this->getDirection();
 
     Computer check(this->getX(), this->getY(), this->getDirection());
     check.choiceMove(direction);
-    if (Game::checkOver(check, map, player)) {
+    if (Game::checkOver(check, map, player) || Game::checkOver(check, map, *this)) {
         switch (this->getDirection()) {
             case UP:
                 direction = this->findDirection(player, map, RIGHT);
@@ -41,7 +41,7 @@ Direction Computer::checkDirection(Player player, Map map) {
 Direction Computer::findDirection(Player player, Map map, Direction direction) {
     Computer check(this->getX(), this->getY(), this->getDirection());
     check.choiceMove(direction);
-    if (Game::checkOver(check, map, player)) {
+    if (Game::checkOver(check, map, player) || Game::checkOver(check, map, *this)) {
         switch (direction) {
             case UP:
                 direction = DOWN;
