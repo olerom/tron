@@ -5,6 +5,7 @@
 #include <ctime>
 #include <unistd.h>
 #include <stdio.h>
+#include <cstdlib>
 
 
 enum Direction {

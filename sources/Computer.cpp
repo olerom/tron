@@ -13,25 +13,37 @@ void Computer::move(Player player, Map map) {
 }
 
 //TODO перегрузить оператор присваивания || сделать нормальным checkover || Map c другими полями -- Спросить короче
+//TODO добавить рандом на выбор направления
 
 Direction Computer::checkDirection(Player player, Map map) {
     Direction direction = this->getDirection();
 
     Computer check(this->getX(), this->getY(), this->getDirection(), this->getScore());
     check.choiceMove(direction);
-    if (Game::checkOver(check, map, player) || Game::checkOver(check, map, *this)) {
+
+    bool chaos = false;
+
+    if (rand() % 40 == 5) {
+        chaos = true;
+    }
+
+    if (Game::checkOver(check, map, player) || Game::checkOver(check, map, *this) || chaos) {
         switch (this->getDirection()) {
+            case DOWN:
             case UP:
-                direction = this->findDirection(player, map, RIGHT);
+                if (rand() % 2 == 1) {
+                    direction = this->findDirection(player, map, LEFT);
+                } else {
+                    direction = this->findDirection(player, map, RIGHT);
+                }
                 break;
             case LEFT:
-                direction = this->findDirection(player, map, UP);
-                break;
-            case DOWN:
-                direction = this->findDirection(player, map, LEFT);
-                break;
             case RIGHT:
-                direction = this->findDirection(player, map, DOWN);
+                if (rand() % 2 == 1) {
+                    direction = this->findDirection(player, map, DOWN);
+                } else {
+                    direction = this->findDirection(player, map, UP);
+                }
                 break;
         }
     }
@@ -53,7 +65,7 @@ Direction Computer::findDirection(Player player, Map map, Direction direction) {
                 direction = UP;
                 break;
             case RIGHT:
-                direction = DOWN;
+                direction = LEFT;
                 break;
         }
     }
