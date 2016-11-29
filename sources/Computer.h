@@ -10,8 +10,6 @@ class Computer : public Player {
 public:
     Computer(int x, int y, Direction direction, int score, Map map);
 
-    Computer(Player player);
-
     void move(Player player, Map map);
 
     void reset(Map &map);

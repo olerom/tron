@@ -9,8 +9,6 @@ class Player {
 public:
     Player(int x, int y, Direction direction, int score, Map &map);
 
-    Player();
-
     int getX();
 
     int getY();

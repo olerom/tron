@@ -3,8 +3,6 @@
 User::User(int x, int y, Direction direction, int score, Map map) : Player(x, y, direction, score, map) {
 }
 
-User::User(Player player) : Player(player) {}
-
 void User::logic() {
     this->tail[this->getX()][this->getY()] = true;
 

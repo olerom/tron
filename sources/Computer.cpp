@@ -2,8 +2,6 @@
 
 Computer::Computer(int x, int y, Direction direction, int score, Map map) : Player(x, y, direction, score, map) {};
 
-Computer::Computer(Player player) : Player(player) {};
-
 void Computer::move(Player player, Map map) {
     this->tail[this->getX()][this->getY()] = true;
 

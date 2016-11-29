@@ -34,14 +34,6 @@ Direction Player::getDirection() {
     return this->direction;
 }
 
-Player::Player() : head_x(10), head_y(10), direction(RIGHT), score(0) {
-    for (int i = 0; i < 15; i++) {
-        for (int j = 0; j < 60; j++) {
-            tail[j][i] = false;
-        }
-    }
-}
-
 void Player::choiceMove(Direction direction) {
 
     switch (direction) {
