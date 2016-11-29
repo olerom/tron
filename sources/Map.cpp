@@ -3,11 +3,11 @@
 
 void Map::draw(Player firstPlayer, Player secondPlayer) {
     // Be careful here later:
-    std::cout << "First player: " << firstPlayer.getScore();
+    std::cout << CYAN << "First player: " << firstPlayer.getScore() << RESET;
     for (int i = 0; i < this->width - 31; i++) {
         std::cout << " ";
     }
-    std::cout << "Second player: " << secondPlayer.getScore() << std::endl;
+    std::cout << RED << "Second player: " << secondPlayer.getScore() << RESET << std::endl;
     // To here
 
 
@@ -21,13 +21,13 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
                 std::cout << "█";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
-                    std::cout << CYAN << "O" << RESET;
+                    std::cout << CYAN << "°" << RESET;
                 } else if (firstPlayer.tail[j][i]) {
-                    std::cout << CYAN << "o" << RESET;
+                    std::cout << CYAN << "°" << RESET;
                 } else if (secondPlayer.getY() == i && secondPlayer.getX() == j) {
-                    std::cout << RED << "@" << RESET;
+                    std::cout << RED << "°" << RESET;
                 } else if (secondPlayer.tail[j][i]) {
-                    std::cout << RED << "o" << RESET;
+                    std::cout << RED << "°" << RESET;
                 } else {
                     std::cout << " ";
                 }
