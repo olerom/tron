@@ -3,8 +3,8 @@
 void Game::run(int firstScore, int secondScore, int speed) {
 
     Map map(20, 80, speed);
-    User player(map.width >> 2, map.height >> 1, RIGHT, firstScore);
-    Computer computer(3 * (map.width >> 2), map.height >> 1, LEFT, secondScore);
+    User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, firstScore, map);
+    Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, secondScore, map);
 
     while (true) {
         clearScreen();
@@ -16,11 +16,11 @@ void Game::run(int firstScore, int secondScore, int speed) {
         if (checkOver(player, map, computer)) {
             usleep(1000000);
             computer.upScore();
-            run(player.getScore(), computer.getScore(), map.speed);
+            run(player.getScore(), computer.getScore(), map.getSpeed());
         } else if (checkOver(computer, map, player)) {
             usleep(1000000);
             player.upScore();
-            run(player.getScore(), computer.getScore(), map.speed);
+            run(player.getScore(), computer.getScore(), map.getSpeed());
         }
 
         if (player.getScore() == 3) {
@@ -31,7 +31,7 @@ void Game::run(int firstScore, int secondScore, int speed) {
             break;
         }
 
-        usleep((__useconds_t) (map.speed * 10000));
+        usleep((__useconds_t) (map.getSpeed() * 10000));
     }
     _exit(0);
 }
@@ -126,8 +126,8 @@ void Game::clearScreen() {
 
 bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
 
-    return firstPlayer.getX() == 0 || firstPlayer.getX() == map.width - 1
-           || firstPlayer.getY() == -1 || firstPlayer.getY() == map.height
+    return firstPlayer.getX() == 0 || firstPlayer.getX() == map.getWidth() - 1
+           || firstPlayer.getY() == -1 || firstPlayer.getY() == map.getHeight()
            || firstPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
            || secondPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
            || (firstPlayer.getX() == secondPlayer.getX() && firstPlayer.getY() == secondPlayer.getY());
@@ -172,13 +172,15 @@ int Game::myKbhit() {
 void Game::winMenu(int switcher) {
     while (true) {
         clearScreen();
-        std::cout << " ____   ____  _____   ______  _________    ___   _______   ____  ____  " << std::endl
+        std::cout << CYAN
+                  << " ____   ____  _____   ______  _________    ___   _______   ____  ____  " << std::endl
                   << "|_  _| |_  _||_   _|.' ___  ||  _   _  | .'   `.|_   __ \\ |_  _||_  _| " << std::endl
                   << "  \\ \\   / /    | | / .'   \\_||_/ | | \\_|/  .-.  \\ | |__) |  \\ \\  / /   " << std::endl
                   << "   \\ \\ / /     | | | |           | |    | |   | | |  __ /    \\ \\/ /    " << std::endl
                   << "    \\ ' /     _| |_\\ `.___.'\\   _| |_   \\  `-'  /_| |  \\ \\_  _|  |_    " << std::endl
                   << "     \\_/     |_____|`.____ .'  |_____|   `.___.'|____| |___||______|   " << std::endl
-                  << "                                                                       " << std::endl;
+                  << "                                                                       " << std::endl
+                  << RESET;
         switch (switcher) {
             case 1:
                 std::cout << "                          << Main menu >>" << std::endl
@@ -214,13 +216,15 @@ void Game::winMenu(int switcher) {
 void Game::loseMenu(int switcher) {
     while (true) {
         clearScreen();
-        std::cout << "     ______   ________  ________  ________       _     _________  " << std::endl
+        std::cout << RED
+                  << "     ______   ________  ________  ________       _     _________  " << std::endl
                   << "    |_   _ `.|_   __  ||_   __  ||_   __  |     / \\   |  _   _  | " << std::endl
                   << "      | | `. \\ | |_ \\_|  | |_ \\_|  | |_ \\_|    / _ \\  |_/ | | \\_| " << std::endl
                   << "      | |  | | |  _| _   |  _|     |  _| _    / ___ \\     | |     " << std::endl
                   << "     _| |_.' /_| |__/ | _| |_     _| |__/ | _/ /   \\ \\_  _| |_    " << std::endl
                   << "    |______.'|________||_____|   |________||____| |____||_____|   " << std::endl
-                  << "                                                              " << std::endl;
+                  << "                                                              " << std::endl
+                  << RESET;
         switch (switcher) {
             case 1:
                 std::cout << "                          << Main menu >>" << std::endl

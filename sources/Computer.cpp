@@ -1,6 +1,6 @@
 #include "Computer.h"
 
-Computer::Computer(int x, int y, Direction direction, int score) : Player(x, y, direction, score) {};
+Computer::Computer(int x, int y, Direction direction, int score, Map map) : Player(x, y, direction, score, map) {};
 
 Computer::Computer(Player player) : Player(player) {};
 
@@ -18,7 +18,7 @@ void Computer::move(Player player, Map map) {
 Direction Computer::checkDirection(Player player, Map map) {
     Direction direction = this->getDirection();
 
-    Computer check(this->getX(), this->getY(), this->getDirection(), this->getScore());
+    Computer check(this->getX(), this->getY(), this->getDirection(), this->getScore(), map);
     check.choiceMove(direction);
 
     bool chaos = false;
@@ -51,7 +51,7 @@ Direction Computer::checkDirection(Player player, Map map) {
 }
 
 Direction Computer::findDirection(Player player, Map map, Direction direction) {
-    Computer check(this->getX(), this->getY(), this->getDirection(), this->getScore());
+    Computer check(this->getX(), this->getY(), this->getDirection(), this->getScore(), map);
     check.choiceMove(direction);
     if (Game::checkOver(check, map, player) || Game::checkOver(check, map, *this)) {
         switch (direction) {

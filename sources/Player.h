@@ -3,9 +3,11 @@
 
 #include "stdafx.h"
 
+class Map;
+
 class Player {
 public:
-    Player(int, int, Direction, int);
+    Player(int x, int y, Direction direction, int score, Map &map);
 
     Player();
 

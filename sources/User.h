@@ -7,7 +7,7 @@
 
 class User : public Player {
 public:
-    User(int x, int y, Direction direction, int score);
+    User(int x, int y, Direction direction, int score, Map map);
 
     User(Player player);
 

@@ -1,9 +1,11 @@
 #include "Player.h"
+#include "Map.h"
 
-Player::Player(int x, int y, Direction direction, int score) : head_x(x), head_y(y), direction(direction), score(score) {
-    for (int i = 0; i < 20; i++) {
-        for (int j = 0; j < 80; j++) {
-            tail[j][i] = false;
+Player::Player(int x, int y, Direction direction, int score, Map &map) : head_x(x), head_y(y), direction(direction),
+                                                                         score(score) {
+    for (int i = 0; i < map.getWidth(); i++) {
+        for (int j = 0; j < map.getHeight(); j++) {
+            tail[i][j] = false;
         }
     }
 }

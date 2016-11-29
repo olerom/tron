@@ -1,23 +1,22 @@
 #include "Map.h"
 
-
 void Map::draw(Player firstPlayer, Player secondPlayer) {
     // Be careful here later:
     std::cout << CYAN << "First player: " << firstPlayer.getScore() << RESET;
-    for (int i = 0; i < this->width - 31; i++) {
+    for (int i = 0; i < this->getWidth() - 31; i++) {
         std::cout << " ";
     }
     std::cout << RED << "Second player: " << secondPlayer.getScore() << RESET << std::endl;
     // To here
 
 
-    for (int i = 0; i < this->width; i++) {
+    for (int i = 0; i < this->getWidth(); i++) {
         std::cout << "▄";
     }
     std::cout << std::endl;
-    for (int i = 0; i < this->height; i++) {
-        for (int j = 0; j < this->width; j++) {
-            if (j == 0 || j == this->width - 1) {
+    for (int i = 0; i < this->getHeight(); i++) {
+        for (int j = 0; j < this->getWidth(); j++) {
+            if (j == 0 || j == this->getWidth() - 1) {
                 std::cout << "█";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
@@ -35,7 +34,7 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
         }
         std::cout << std::endl;
     }
-    for (int i = 0; i < this->width; i++) {
+    for (int i = 0; i < this->getWidth(); i++) {
         std::cout << "▀";
     }
     std::cout << std::endl;
@@ -45,4 +44,16 @@ Map::Map(int height, int width, int speed) {
     this->height = height;
     this->width = width;
     this->speed = speed;
+}
+
+int Map::getSpeed() {
+    return this->speed;
+}
+
+int Map::getHeight() {
+    return this->height;
+}
+
+int Map::getWidth() {
+    return this->width;
 }
