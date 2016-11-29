@@ -26,3 +26,10 @@ void User::logic() {
     this->choiceMove(direction);
 }
 
+void User::reset(Map &map) {
+    Player::reset(map);
+    this->direction = RIGHT;
+    this->head_x = map.getWidth() >> 2;
+    this->head_y = map.getHeight() >> 1;
+}
+

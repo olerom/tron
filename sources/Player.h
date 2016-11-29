@@ -19,6 +19,8 @@ public:
 
     void upScore();
 
+    virtual void reset(Map &map);
+
     void setX(int);
 
     void setY(int);

@@ -71,3 +71,10 @@ Direction Computer::findDirection(Player player, Map map, Direction direction) {
     }
     return direction;
 }
+
+void Computer::reset(Map &map) {
+    Player::reset(map);
+    this->direction = LEFT;
+    this->head_x = 3 * (map.getWidth() >> 2);
+    this->head_y = map.getHeight() >> 1;
+}

@@ -72,3 +72,11 @@ int Player::getScore() {
 void Player::upScore() {
     this->score++;
 }
+
+void Player::reset(Map &map) {
+    for (int i = 0; i < map.getWidth(); i++) {
+        for (int j = 0; j < map.getHeight(); j++) {
+            tail[i][j] = false;
+        }
+    }
+}

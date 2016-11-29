@@ -1,10 +1,10 @@
 #include "Game.h"
 
-void Game::run(int firstScore, int secondScore, int speed) {
+void Game::run(int speed) {
 
     Map map(20, 80, speed);
-    User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, firstScore, map);
-    Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, secondScore, map);
+    User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, 0, map);
+    Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, 0, map);
 
     while (true) {
         clearScreen();
@@ -14,13 +14,17 @@ void Game::run(int firstScore, int secondScore, int speed) {
         computer.move(player, map);
 
         if (checkOver(player, map, computer)) {
-            usleep(1000000);
+            usleep((__useconds_t) 1000000);
             computer.upScore();
-            run(player.getScore(), computer.getScore(), map.getSpeed());
+
+            player.reset(map);
+            computer.reset(map);
         } else if (checkOver(computer, map, player)) {
-            usleep(1000000);
+            usleep((__useconds_t) 1000000);
             player.upScore();
-            run(player.getScore(), computer.getScore(), map.getSpeed());
+
+            player.reset(map);
+            computer.reset(map);
         }
 
         if (player.getScore() == 3) {
@@ -92,7 +96,7 @@ void Game::startMenu(int switcher) {
                 break;
             case ' ':
                 if (switcher == 1) {
-                    this->run(0, 0, speed);
+                    this->run(speed);
                 } else if (switcher == 2) {
                     speed = this->settings();
                 } else if (switcher == 3) {

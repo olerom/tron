@@ -12,6 +12,8 @@ public:
     User(Player player);
 
     void logic();
+
+    void reset(Map &map);
 };
 
 

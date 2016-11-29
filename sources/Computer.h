@@ -14,6 +14,8 @@ public:
 
     void move(Player player, Map map);
 
+    void reset(Map &map);
+
     Direction checkDirection(Player player, Map map);
 
     Direction findDirection(Player player, Map map, Direction direction);
