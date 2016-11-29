@@ -25,7 +25,7 @@ public:
 
     void setDirection(Direction);
 
-    bool tail[60][20];
+    bool tail[80][20];
 
     void choiceMove(Direction direction);
 

@@ -14,6 +14,6 @@ set(SOURCE_FILES
         Computer.cpp
         Computer.h
         User.cpp
-        User.h)
+        User.h Colors.h)
 
 add_executable(ConsoleAPP ${SOURCE_FILES})

@@ -10,6 +10,7 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
     std::cout << "Second player: " << secondPlayer.getScore() << std::endl;
     // To here
 
+
     for (int i = 0; i < this->width; i++) {
         std::cout << "▄";
     }
@@ -20,13 +21,13 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
                 std::cout << "█";
             } else {
                 if (firstPlayer.getY() == i && firstPlayer.getX() == j) {
-                    std::cout << "O";
+                    std::cout << CYAN << "O" << RESET;
                 } else if (firstPlayer.tail[j][i]) {
-                    std::cout << "o";
+                    std::cout << CYAN << "o" << RESET;
                 } else if (secondPlayer.getY() == i && secondPlayer.getX() == j) {
-                    std::cout << "@";
+                    std::cout << RED << "@" << RESET;
                 } else if (secondPlayer.tail[j][i]) {
-                    std::cout << "o";
+                    std::cout << RED << "o" << RESET;
                 } else {
                     std::cout << " ";
                 }

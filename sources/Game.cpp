@@ -2,7 +2,7 @@
 
 void Game::run(int firstScore, int secondScore) {
 
-    Map map(20, 60);
+    Map map(20, 80);
     User player(map.width >> 2, map.height >> 1, RIGHT, firstScore);
     Computer computer(3 * (map.width >> 2), map.height >> 1, LEFT, secondScore);
 
@@ -14,9 +14,11 @@ void Game::run(int firstScore, int secondScore) {
         computer.move(player, map);
 
         if (checkOver(player, map, computer)) {
+            usleep(1000000);
             computer.upScore();
             run(player.getScore(), computer.getScore());
         } else if (checkOver(computer, map, player)) {
+            usleep(1000000);
             player.upScore();
             run(player.getScore(), computer.getScore());
         }

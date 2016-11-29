@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "Player.h"
+#include "Colors.h"
 
 class Map {
 public:
