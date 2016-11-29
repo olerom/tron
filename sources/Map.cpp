@@ -21,11 +21,11 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
             } else {
                 if (firstPlayer.getY() == j && firstPlayer.getX() == i) {
                     std::cout << CYAN << "°" << RESET;
-                } else if (firstPlayer.tail[i][j]) {
+                } else if (firstPlayer.getTail(i, j)) {
                     std::cout << CYAN << "°" << RESET;
                 } else if (secondPlayer.getY() == j && secondPlayer.getX() == i) {
                     std::cout << RED << "°" << RESET;
-                } else if (secondPlayer.tail[i][j]) {
+                } else if (secondPlayer.getTail(i, j)) {
                     std::cout << RED << "°" << RESET;
                 } else {
                     std::cout << " ";

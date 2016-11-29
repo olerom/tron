@@ -3,15 +3,14 @@
 Computer::Computer(int x, int y, Direction direction, int score, Map map) : Player(x, y, direction, score, map) {};
 
 void Computer::move(Player player, Map map) {
-    this->tail[this->getX()][this->getY()] = true;
+    this->setTail(this->getX(), this->getY());
 
     Direction direction = this->checkDirection(player, map);
 
     this->choiceMove(direction);
 }
 
-//TODO перегрузить оператор присваивания || сделать нормальным checkover || Map c другими полями -- Спросить короче
-//TODO добавить рандом на выбор направления
+//TODO перегрузить оператор присваивания || сделать нормальным checkover
 
 Direction Computer::checkDirection(Player player, Map map) {
     Direction direction = this->getDirection();

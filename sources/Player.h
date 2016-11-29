@@ -27,11 +27,14 @@ public:
 
     void setDirection(Direction);
 
-    std::vector<std::vector<bool> > tail;
+    bool getTail(int x, int y);
+
+    void setTail(int x, int y);
 
     void choiceMove(Direction direction);
 
 protected:
+    std::vector<std::vector<bool> > tail;
     int score;
     int head_x;
     int head_y;

@@ -132,8 +132,8 @@ bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
 
     return firstPlayer.getX() == 0 || firstPlayer.getX() == map.getWidth() - 1
            || firstPlayer.getY() == -1 || firstPlayer.getY() == map.getHeight()
-           || firstPlayer.tails[firstPlayer.getX()][firstPlayer.getY()]
-           || secondPlayer.tails[firstPlayer.getX()][firstPlayer.getY()]
+           || firstPlayer.getTail(firstPlayer.getX(), firstPlayer.getY())
+           || secondPlayer.getTail(firstPlayer.getX(), firstPlayer.getY())
            || (firstPlayer.getX() == secondPlayer.getX() && firstPlayer.getY() == secondPlayer.getY());
 
 }

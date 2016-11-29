@@ -4,7 +4,7 @@ User::User(int x, int y, Direction direction, int score, Map map) : Player(x, y,
 }
 
 void User::logic() {
-    this->tail[this->getX()][this->getY()] = true;
+    this->setTail(this->getX(), this->getY());
 
     Direction direction = this->getDirection();
 

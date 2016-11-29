@@ -70,7 +70,15 @@ void Player::upScore() {
 void Player::reset(Map &map) {
     for (int i = 0; i < map.getWidth(); i++) {
         for (int j = 0; j < map.getHeight(); j++) {
-            tail[i][j] = false;
+            this->tail[i][j] = false;
         }
     }
+}
+
+bool Player::getTail(int x, int y) {
+    return this->tail[x][y];
+}
+
+void Player::setTail(int x, int y) {
+    this->tail[x][y] = true;
 }
