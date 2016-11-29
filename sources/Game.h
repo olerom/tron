@@ -13,7 +13,7 @@
 
 class Game {
 public:
-    void run(int speed);
+    void run(int &speed);
 
     void winMenu(int switcher);
 

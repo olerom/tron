@@ -27,7 +27,7 @@ public:
 
     void setDirection(Direction);
 
-    bool tail[80][20];
+    std::vector<std::vector<bool> > tail;
 
     void choiceMove(Direction direction);
 

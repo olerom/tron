@@ -4,9 +4,11 @@
 Player::Player(int x, int y, Direction direction, int score, Map &map) : head_x(x), head_y(y), direction(direction),
                                                                          score(score) {
     for (int i = 0; i < map.getWidth(); i++) {
+        std::vector<bool> tailHelp;
         for (int j = 0; j < map.getHeight(); j++) {
-            tail[i][j] = false;
+            tailHelp.push_back(false);
         }
+        tail.push_back(tailHelp);
     }
 }
 

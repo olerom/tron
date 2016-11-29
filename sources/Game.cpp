@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void Game::run(int speed) {
+void Game::run(int &speed) {
 
     Map map(20, 80, speed);
     User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, 0, map);
@@ -132,14 +132,13 @@ bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
 
     return firstPlayer.getX() == 0 || firstPlayer.getX() == map.getWidth() - 1
            || firstPlayer.getY() == -1 || firstPlayer.getY() == map.getHeight()
-           || firstPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
-           || secondPlayer.tail[firstPlayer.getX()][firstPlayer.getY()]
+           || firstPlayer.tails[firstPlayer.getX()][firstPlayer.getY()]
+           || secondPlayer.tails[firstPlayer.getX()][firstPlayer.getY()]
            || (firstPlayer.getX() == secondPlayer.getX() && firstPlayer.getY() == secondPlayer.getY());
 
 }
 
 //Unknown solution from internet, works somehow.
-//TODO спросить про использование функций.
 
 int Game::myGetch() {
     struct termios oldt,
