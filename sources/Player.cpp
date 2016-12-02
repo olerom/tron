@@ -82,3 +82,4 @@ bool Player::getTail(int x, int y) {
 void Player::setTail(int x, int y) {
     this->tail[x][y] = true;
 }
+

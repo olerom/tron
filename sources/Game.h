@@ -13,7 +13,10 @@
 
 class Game {
 public:
-    void run(int &speed);
+
+    Game(int speed) : speed(speed) {};
+
+    void run();
 
     void winMenu(int switcher);
 
@@ -30,6 +33,13 @@ public:
     int static myGetch();
 
     int static myKbhit();
+
+    void setSpeed(int speed);
+
+    int getSpeed();
+
+private:
+    int speed;
 };
 
 #endif //TRON_GAME_H

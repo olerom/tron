@@ -1,8 +1,8 @@
 #include "Game.h"
 
-void Game::run(int &speed) {
+void Game::run() {
 
-    Map map(20, 80, speed);
+    Map map(20, 80, this->getSpeed());
     User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, 0, map);
     Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, 0, map);
 
@@ -43,7 +43,7 @@ void Game::run(int &speed) {
 void Game::startMenu(int switcher) {
 
     bool running = true;
-    static int speed = 6;
+
     while (running) {
         clearScreen();
         std::cout << " ─────────────────────────────────────────────────────────────────────────" << std::endl
@@ -96,9 +96,9 @@ void Game::startMenu(int switcher) {
                 break;
             case ' ':
                 if (switcher == 1) {
-                    this->run(speed);
+                    this->run();
                 } else if (switcher == 2) {
-                    speed = this->settings();
+                    this->setSpeed(this->settings());
                 } else if (switcher == 3) {
                     _exit(0);
                 }
@@ -258,4 +258,12 @@ void Game::loseMenu(int switcher) {
         }
     }
 
+}
+
+void Game::setSpeed(int speed) {
+    this->speed = speed;
+}
+
+int Game::getSpeed() {
+    return this->speed;
 }

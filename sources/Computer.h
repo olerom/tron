@@ -9,6 +9,7 @@ class Computer : public Player {
 
 public:
     Computer(int x, int y, Direction direction, int score, Map map);
+    Computer(int x, int y, Direction direction, int score, Map &map, Computer computer);
 
     void move(Player player, Map map);
 
@@ -17,6 +18,11 @@ public:
     Direction checkDirection(Player player, Map map);
 
     Direction findDirection(Player player, Map map, Direction direction);
+
+    bool getChaos();
+
+    bool getRandomChoice();
+
 };
 
 
