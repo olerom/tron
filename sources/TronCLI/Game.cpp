@@ -108,12 +108,12 @@ void Game::startMenu(int switcher) {
     }
 }
 
-
 int Game::settings() {
     clearScreen();
     std::cout << "Choose speed: from 1 to 9" << std::endl;
-    bool running = true;
-    while (running) {
+//    bool running = true;
+//    while (running) {
+    while (true) {
         int choice = myGetch();
         if (choice >= 49 && choice <= 57) {
             return 60 - choice;
@@ -130,7 +130,6 @@ void Game::clearScreen() {
 }
 
 bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
-
     return firstPlayer.getX() == 0 || firstPlayer.getX() == map.getWidth() - 1
            || firstPlayer.getY() == -1 || firstPlayer.getY() == map.getHeight()
            || firstPlayer.getTail(firstPlayer.getX(), firstPlayer.getY())
@@ -140,7 +139,6 @@ bool Game::checkOver(Player firstPlayer, Map map, Player secondPlayer) {
 }
 
 //Unknown solution from internet, works somehow.
-
 int Game::myGetch() {
     struct termios oldt,
             newt;
