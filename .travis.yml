@@ -1,8 +1,7 @@
 language: cpp
 
 compiler:
-  - clang
-  - gcc
+  gcc
 
 #sudo: required
 
@@ -22,4 +21,4 @@ compiler:
 #  - export CXX=g++
 #  - export CC=gcc
 
-install: make get-deps
+#install: make get-deps
