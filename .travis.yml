@@ -3,6 +3,9 @@ language: cpp
 compiler:
   gcc
 
+script:
+  make
+
 #sudo: required
 
 #dist: trusty
