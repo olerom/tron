@@ -13,7 +13,6 @@
 
 class Game {
 public:
-
     Game(int speed) : speed(speed) {};
 
     void run();

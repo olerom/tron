@@ -6,9 +6,9 @@
 #include "Game.h"
 
 class Computer : public Player {
-
 public:
     Computer(int x, int y, Direction direction, int score, Map map);
+
     Computer(int x, int y, Direction direction, int score, Map &map, Computer computer);
 
     void move(Player player, Map map);
@@ -22,7 +22,6 @@ public:
     bool getChaos();
 
     bool getRandomChoice();
-
 };
 
 

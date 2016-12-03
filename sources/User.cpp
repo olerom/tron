@@ -10,13 +10,13 @@ void User::logic() {
 
     if (Game::myKbhit()) {
         int res = Game::myGetch();
-        if (res == 'a' && direction != RIGHT) {
+        if (res == 97 && direction != RIGHT) {
             direction = LEFT;
-        } else if (res == 'd' && direction != LEFT) {
+        } else if (res == 100 && direction != LEFT) {
             direction = RIGHT;
-        } else if (res == 'w' && direction != DOWN) {
+        } else if (res == 119 && direction != DOWN) {
             direction = UP;
-        } else if (res == 's' && direction != UP) {
+        } else if (res == 115 && direction != UP) {
             direction = DOWN;
         }
     }

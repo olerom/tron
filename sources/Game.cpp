@@ -80,21 +80,22 @@ void Game::startMenu(int switcher) {
 
         int menu = myGetch();
         switch (menu) {
-            case 'w':
+            case 119:
                 if (switcher != 1) {
                     this->startMenu(switcher - 1);
                 } else {
                     this->startMenu(3);
                 }
                 break;
-            case 's':
+            case 115:
                 if (switcher != 3) {
                     this->startMenu(switcher + 1);
                 } else {
                     this->startMenu(1);
                 }
                 break;
-            case ' ':
+            case 32:
+            case 10:
                 if (switcher == 1) {
                     this->run();
                 } else if (switcher == 2) {
@@ -196,15 +197,16 @@ void Game::winMenu(int switcher) {
         }
         int menu = myGetch();
         switch (menu) {
-            case 'w':
-            case 's':
+            case 119:
+            case 115:
                 if (switcher != 1) {
                     this->winMenu(1);
                 } else {
                     this->winMenu(2);
                 }
                 break;
-            case ' ':
+            case 32:
+            case 10:
                 if (switcher == 1) {
                     this->startMenu(1);
                 } else if (switcher == 2) {
@@ -240,15 +242,16 @@ void Game::loseMenu(int switcher) {
         }
         int menu = myGetch();
         switch (menu) {
-            case 'w':
-            case 's':
+            case 119:
+            case 115:
                 if (switcher != 1) {
                     this->loseMenu(1);
                 } else {
                     this->loseMenu(2);
                 }
                 break;
-            case ' ':
+            case 32:
+            case 10:
                 if (switcher == 1) {
                     this->startMenu(1);
                 } else if (switcher == 2) {
