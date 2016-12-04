@@ -14,6 +14,6 @@ set(SOURCE_FILES
         Computer.cpp
         Computer.h
         User.cpp
-        User.h Colors.h)
+        User.h Colors.h ../TronCore/GameAPI.h)
 
 add_executable(TronCLI ${SOURCE_FILES})

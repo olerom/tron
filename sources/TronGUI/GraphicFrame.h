@@ -5,7 +5,9 @@
 #include <QtWidgets/QFrame>
 
 class GraphicFrame : public QFrame {
-
+Q_OBJECT
+public:
+    explicit GraphicFrame(QWidget *parent = 0);
 };
 
 
