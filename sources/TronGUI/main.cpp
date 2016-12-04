@@ -1,9 +1,11 @@
 #include <QtWidgets>
+#include "MenuWindow.h"
 
 int main(int argv, char **args) {
     QApplication app(argv, args);
-    QTextEdit textEdit;
-    textEdit.show();
+
+    MenuWindow menuWindow(0);
+    menuWindow.show();
 
     return app.exec();
 }

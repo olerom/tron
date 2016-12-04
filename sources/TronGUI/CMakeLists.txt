@@ -1,5 +1,5 @@
 set(SOURCE_FILES
-        main.cpp)
+        main.cpp MenuWindow.cpp MenuWindow.h)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
@@ -10,7 +10,9 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Gui REQUIRED)
 
-add_executable(TronGUI ${SOURCE_FILES})
+qt5_add_resources(RESOURCE_ADDED resources/resources.qrc)
+
+add_executable(TronGUI ${SOURCE_FILES} ${RESOURCE_ADDED})
 
 target_link_libraries(TronGUI Qt5::Core)
 target_link_libraries(TronGUI Qt5::Widgets)
