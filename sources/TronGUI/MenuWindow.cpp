@@ -1,4 +1,5 @@
 #include "MenuWindow.h"
+#include "GameWindow.h"
 
 MenuWindow::MenuWindow(QWidget *parent) {
     this->setFixedSize(SCREEN_SIZE);
@@ -7,6 +8,11 @@ MenuWindow::MenuWindow(QWidget *parent) {
     QPalette qPalette;
     qPalette.setBrush(this->backgroundRole(), QBrush(background));
     this->setPalette(qPalette);
+
+    QWidget *frame = new QWidget(this);
+//    frame->setGeometry(SCREEN_SIZE.width() >> 1, SCREEN_SIZE.height() >> 2, 800, 310);
+    frame->setGeometry(100, 0, 800, 310);
+    frame->setStyleSheet("background-image: url(:/tron_logo.png)");
 
     startButton = new QPushButton(this);
     startButton->setStyleSheet(QPushButtonStyle);
@@ -26,6 +32,8 @@ MenuWindow::MenuWindow(QWidget *parent) {
                      (SCREEN_SIZE.height() >> 1) + BUTTON_SIZE.height());
 
     connect(exitButton, SIGNAL(clicked()), this, SLOT(exit()));
+
+    setWindowTitle(tr("Tron | Main menu"));
 }
 
 void MenuWindow::exit() {
@@ -33,5 +41,7 @@ void MenuWindow::exit() {
 }
 
 void MenuWindow::startGame() {
-
+    GameWindow *game = new GameWindow(0);
+    game->show();
+    exit();
 }

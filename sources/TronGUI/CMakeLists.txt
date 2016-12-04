@@ -1,5 +1,5 @@
 set(SOURCE_FILES
-        main.cpp MenuWindow.cpp MenuWindow.h)
+        main.cpp MenuWindow.cpp MenuWindow.h GameWindow.cpp GameWindow.h GraphicFrame.cpp GraphicFrame.h)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 

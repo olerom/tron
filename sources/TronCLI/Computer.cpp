@@ -86,5 +86,5 @@ bool Computer::getRandomChoice() {
 }
 
 bool Computer::getChaos() {
-    return rand() % 50 == 0;
+    return rand() % 10 == 0;
 }
