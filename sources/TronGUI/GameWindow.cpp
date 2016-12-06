@@ -1,7 +1,7 @@
-#include <QtWidgets>
 #include "GameWindow.h"
+#include "MenuWindow.h"
 
-GameWindow::GameWindow(QWidget *parent) {
+GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);
     setWindowTitle(tr("Tron"));
 
@@ -10,17 +10,8 @@ GameWindow::GameWindow(QWidget *parent) {
     qPalette.setBrush(this->backgroundRole(), QBrush(background));
     this->setPalette(qPalette);
 
-    board = new GraphicFrame();
-
-
-//    QGraphicsScene *scene = new QGraphicsScene();
-//    QGraphicsRectItem *rect = new QGraphicsRectItem();
-//    rect->setRect(0, 0, 100, 100);
-//
-//    scene->addItem(rect);
-//
-//    QGraphicsView *view = new QGraphicsView(scene);
-//    view->show();
+    scene = new QGraphicsScene(0, 0, 800, 600);
+    setScene(scene);
 
 }
 
@@ -32,4 +23,8 @@ void GameWindow::menu() {
     MenuWindow *menu = new MenuWindow(0);
     menu->show();
     close();
+}
+
+void GameWindow::start() {
+
 }

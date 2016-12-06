@@ -1,27 +1,22 @@
 #ifndef TRON_GAMEWINDOW_H
 #define TRON_GAMEWINDOW_H
 
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QWidget>
 
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QLabel>
-#include "MenuWindow.h"
-#include "GraphicFrame.h"
-
-class GameWindow : public QWidget {
+class GameWindow : public QGraphicsView {
 Q_OBJECT
-
-
 public:
-    explicit GameWindow(QWidget *parent);
+    GameWindow(QWidget *parent = NULL);
 
-    virtual ~GameWindow() {}
+    void start();
+
+    QGraphicsScene *scene;
 
 private:
 
     const QSize SCREEN_SIZE{1000, 500};
-
-    GraphicFrame *board;
 
 
 private slots:

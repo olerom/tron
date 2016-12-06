@@ -2,14 +2,15 @@
 #define TRON_MENUWINDOW_H
 
 
-#include <QtWidgets/QWidget>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QWidget>
 #include <QtWidgets/QPushButton>
 
-class MenuWindow : public QWidget {
+class MenuWindow : public QGraphicsView {
 Q_OBJECT
-
 public:
-    explicit MenuWindow(QWidget *parent);
+    MenuWindow(QWidget *parent = NULL);
 
 
 private:

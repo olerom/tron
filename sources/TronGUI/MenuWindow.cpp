@@ -1,7 +1,7 @@
 #include "MenuWindow.h"
 #include "GameWindow.h"
 
-MenuWindow::MenuWindow(QWidget *parent) {
+MenuWindow::MenuWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);
 
     QPixmap background(":/grid.png");
@@ -41,7 +41,8 @@ void MenuWindow::exit() {
 }
 
 void MenuWindow::startGame() {
-    GameWindow *game = new GameWindow(0);
+    GameWindow *game = new GameWindow();
     game->show();
+    game->start();
     exit();
 }
