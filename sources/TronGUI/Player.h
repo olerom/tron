@@ -1,13 +1,17 @@
-//
-// Created by olerom on 06.12.16.
-//
-
 #ifndef TRON_PLAYER_H
 #define TRON_PLAYER_H
 
+#include <QtWidgets/QGraphicsRectItem>
 
-class Player {
+#include <QKeyEvent>
 
+class Player : public QGraphicsRectItem {
+public:
+    Player(QGraphicsItem *parent = NULL);
+
+    void keyPressEvent(QKeyEvent *event);
+
+    QPointF prevPos;
 };
 
 
