@@ -11,6 +11,8 @@ public:
 
     Computer(int x, int y, Direction direction, int score, Map &map, Computer computer);
 
+    ~Computer() {}
+
     void move(Player player, Map map);
 
     void reset(Map &map);

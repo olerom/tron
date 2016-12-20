@@ -15,6 +15,8 @@ class Game {
 public:
     Game(int speed) : speed(speed) {};
 
+    ~Game() {}
+
     void run();
 
     void winMenu(int switcher);

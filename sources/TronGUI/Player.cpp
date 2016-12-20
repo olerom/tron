@@ -1,16 +1,14 @@
 #include "Player.h"
 #include <QBrush>
-#include <iostream>
 
 Player::Player(QGraphicsItem *parent) {
-    setRect(20, 20, 50, 50);
+    setRect(20, 20, 25, 25);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::darkRed);
     setBrush(brush);
 
-    setFlag(QGraphicsItem::ItemIsFocusable, true);
-
+//    setFlag(QGraphicsItem::ItemIsFocusable, true);
 }
 
 void Player::keyPressEvent(QKeyEvent *event) {

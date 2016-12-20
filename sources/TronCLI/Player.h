@@ -8,7 +8,8 @@ class Map;
 class Player {
 public:
     Player(int x, int y, Direction direction, int score, Map &map);
-//    ~Player();
+
+    virtual ~Player() {};
 
     int getX();
 
