@@ -15,7 +15,7 @@ GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
 //    qPalette.setBrush(this->backgroundRole(), QBrush(background));
 //    this->setPalette(qPalette);
 
-    scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width(), SCREEN_SIZE.height());
+    scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
     setScene(scene);
 }
 

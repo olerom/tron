@@ -40,14 +40,9 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
     std::cout << std::endl;
 }
 
-Map::Map(int height, int width, int speed) {
+Map::Map(int height, int widthd) {
     this->height = height;
     this->width = width;
-    this->speed = speed;
-}
-
-int Map::getSpeed() {
-    return this->speed;
 }
 
 int Map::getHeight() {

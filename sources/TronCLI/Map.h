@@ -7,7 +7,7 @@
 
 class Map {
 public:
-    Map(int height, int width, int speed);
+    Map(int height, int width);
 
     void draw(Player firstPlayer, Player secondPlayer);
 
@@ -15,12 +15,9 @@ public:
 
     int getHeight();
 
-    int getSpeed();
-
 private:
     int width;
     int height;
-    int speed;
 };
 
 

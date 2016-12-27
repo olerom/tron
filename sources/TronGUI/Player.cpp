@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <QBrush>
 
 Player::Player(QGraphicsItem *parent) {
     setRect(20, 20, 25, 25);
@@ -8,7 +7,13 @@ Player::Player(QGraphicsItem *parent) {
     brush.setColor(Qt::darkRed);
     setBrush(brush);
 
-//    setFlag(QGraphicsItem::ItemIsFocusable, true);
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    this->setFocus();
+
+    QTimer *timer = new QTimer();
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(keepMove()));
+    timer->start(50);
 }
 
 void Player::keyPressEvent(QKeyEvent *event) {
@@ -21,4 +26,8 @@ void Player::keyPressEvent(QKeyEvent *event) {
     } else if (event->key() == Qt::Key_Down) {
         setPos(x(), y() + 10);
     }
+}
+
+void Player::keepMove() {
+    setPos(x() + 1, y());
 }

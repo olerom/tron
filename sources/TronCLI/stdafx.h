@@ -8,8 +8,8 @@
 #include <cstdlib>
 #include <vector>
 
-
 enum Direction {
     UP, RIGHT, DOWN, LEFT
 };
+
 #endif

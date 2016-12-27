@@ -1,8 +1,7 @@
 #include "Game.h"
 
 void Game::run() {
-
-    Map map(20, 80, this->getSpeed());
+    Map map(20, 80);
     User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, 0, map);
     Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, 0, map);
 
@@ -35,7 +34,7 @@ void Game::run() {
             break;
         }
 
-        usleep((__useconds_t) (map.getSpeed() * 10000));
+        usleep((__useconds_t) (this->speed * 10000));
     }
     _exit(0);
 }

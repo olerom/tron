@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QWidget>
+//#include <GL\freeglut.h>
 
 class GameWindow : public QGraphicsView {
 Q_OBJECT
