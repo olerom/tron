@@ -2,9 +2,7 @@
 #include "MenuWindow.h"
 #include "Player.h"
 //TODO пофиксить переходы
-//TODO пофиксить смещение фона
 //TODO продумать кор, не наследоваться от кьютишных классов? Хз вообще
-//TODO сделать движение без аи
 
 GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);

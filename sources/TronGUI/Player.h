@@ -14,12 +14,22 @@ class Player : public QObject, public QGraphicsRectItem {
 Q_OBJECT
 public:
 
+    enum Direction {
+        UP, RIGHT, DOWN, LEFT
+    };
+
     Player(QGraphicsItem *parent = NULL);
 
     void keyPressEvent(QKeyEvent *event);
 
-    QPointF prevPos;
+    Direction direction;
 
+    QPointF head;
+    QList<QPointF> tail;
+
+    QPainterPath shape() const;
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
 
 public slots:
 

@@ -1,11 +1,12 @@
 #include "Player.h"
 
 Player::Player(QGraphicsItem *parent) {
-    setRect(20, 20, 25, 25);
-    QBrush brush;
-    brush.setStyle(Qt::SolidPattern);
-    brush.setColor(Qt::darkRed);
-    setBrush(brush);
+    setRect(0, 0, 5, 5);
+    direction = RIGHT;
+//    QBrush brush;
+//    brush.setStyle(Qt::SolidPattern);
+//    brush.setColor(Qt::darkRed);
+//    setBrush(brush);
 
     setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
@@ -13,21 +14,62 @@ Player::Player(QGraphicsItem *parent) {
     QTimer *timer = new QTimer();
 
     connect(timer, SIGNAL(timeout()), this, SLOT(keepMove()));
-    timer->start(50);
+
+    timer->start(40);
 }
 
 void Player::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Left) {
-        setPos(x() - 10, y());
-    } else if (event->key() == Qt::Key_Right) {
-        setPos(x() + 10, y());
-    } else if (event->key() == Qt::Key_Up) {
-        setPos(x(), y() - 10);
-    } else if (event->key() == Qt::Key_Down) {
-        setPos(x(), y() + 10);
+    if (event->key() == Qt::Key_Left && direction != RIGHT) {
+        direction = LEFT;
+    } else if (event->key() == Qt::Key_Right && direction != LEFT) {
+        direction = RIGHT;
+    } else if (event->key() == Qt::Key_Up && direction != DOWN) {
+        direction = UP;
+    } else if (event->key() == Qt::Key_Down && direction != UP) {
+        direction = DOWN;
     }
 }
 
 void Player::keepMove() {
-    setPos(x() + 1, y());
+    switch (direction) {
+        case UP:
+            head.setX(x());
+            head.setY(y() - 5);
+            break;
+        case DOWN:
+            head.setX(x());
+            head.setY(y() + 5);
+            break;
+        case LEFT:
+            head.setX(x() - 5);
+            head.setY(y());
+            break;
+        case RIGHT:
+            head.setX(x() + 5);
+            head.setY(y());
+            break;
+    }
+
+    setPos(head);
+    tail << head;
+}
+
+QPainterPath Player::shape() const {
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+
+    path.addRect(QRectF(0, 0, 5, 5));
+
+            foreach (QPointF p, tail) {
+            QPointF itemp = mapFromScene(p);
+            path.addRect(QRectF(itemp.x(), itemp.y(), 5, 5));
+        }
+
+    return path;
+}
+
+void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
+    painter->save();
+    painter->fillPath(shape(), Qt::yellow);
+    painter->restore();
 }
