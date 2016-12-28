@@ -10,15 +10,18 @@
 #include <QWidget>
 #include <QtGui>
 
+class GameWindow;
+
+enum Direction {
+    UP, RIGHT, DOWN, LEFT
+};
+
 class Player : public QObject, public QGraphicsRectItem {
 Q_OBJECT
 public:
 
-    enum Direction {
-        UP, RIGHT, DOWN, LEFT
-    };
 
-    Player(QGraphicsItem *parent = NULL);
+    Player(GameWindow *view, QGraphicsItem *parent = NULL);
 
     void keyPressEvent(QKeyEvent *event);
 
@@ -30,6 +33,12 @@ public:
     QPainterPath shape() const;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+
+private:
+//    QGraphicsView *view;
+    GameWindow *view;
+
+    bool isOver();
 
 public slots:
 
