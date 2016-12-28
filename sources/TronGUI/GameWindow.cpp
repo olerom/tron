@@ -29,10 +29,18 @@ void GameWindow::menu() {
 }
 
 void GameWindow::start() {
-    player = new Player(this);
+    player = new User(this);
+
     scene->addItem(player);
 
     QTimer *timer = new QTimer();
     connect(timer, SIGNAL(timeout()), player, SLOT(keepMove()));
     timer->start(10);
+}
+
+
+void GameWindow::clean() {
+//    this->scene->clear();
+//    player->tail.clear();
+//    start();
 }

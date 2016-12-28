@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QWidget>
 #include "Player.h"
+#include "User.h"
 //#include <GL\freeglut.h>
 
 class GameWindow : public QGraphicsView {
@@ -12,15 +13,17 @@ Q_OBJECT
 public:
     GameWindow(QWidget *parent = NULL);
 
+    void clean();
+
     void start();
 
+    const QSize SCREEN_SIZE{1000, 500};
 private:
 
     QGraphicsScene *scene;
 
-    Player *player;
+    User *player;
 
-    const QSize SCREEN_SIZE{1000, 500};
 
 public slots:
 

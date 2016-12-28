@@ -20,8 +20,7 @@ class Player : public QObject, public QGraphicsRectItem {
 Q_OBJECT
 public:
 
-
-    Player(GameWindow *view, QGraphicsItem *parent = NULL);
+    Player(GameWindow *gameBoard, QGraphicsItem *parent = NULL);
 
     void keyPressEvent(QKeyEvent *event);
 
@@ -35,9 +34,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
 
 private:
-//    QGraphicsView *view;
-    GameWindow *view;
-
+    GameWindow *board;
+    int score;
     bool isOver();
 
 public slots:

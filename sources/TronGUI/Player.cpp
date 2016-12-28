@@ -3,22 +3,20 @@
 #include "MenuWindow.h"
 #include "GameWindow.h"
 
-Player::Player(GameWindow *view, QGraphicsItem *parent) {
-    this->view = view;
+Player::Player(GameWindow *gameBoard, QGraphicsItem *parent) {
+    this->board = gameBoard;
+    score = 0;
     setRect(0, 0, 1, 1);
     direction = RIGHT;
 //    QBrush brush;
 //    brush.setStyle(Qt::SolidPattern);
 //    brush.setColor(Qt::darkRed);
 //    setBrush(brush);
-
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 
 //    QTimer *timer = new QTimer();
-//
 //    connect(timer, SIGNAL(timeout()), this, SLOT(keepMove()));
-//
 //    timer->start(10);
 }
 
@@ -55,11 +53,14 @@ void Player::keepMove() {
     }
 
     setPos(head);
-    if (isOver()){
-        std::cout << "_over_\n";
-        view->menu();
-        QTimer *timer = new QTimer();
-        connect(timer, SIGNAL(timeout()), view, SLOT(menu()));
+    if (isOver()) {
+//        if (++score == 3) {
+//            std::cout << "_over_\n";
+//            board->menu();
+//        } else {
+//            board->clean();
+//        }
+        board->menu();
     }
     tail << head;
 
@@ -86,5 +87,6 @@ void Player::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
 }
 
 bool Player::isOver() {
-    return tail.contains(head);
+    return (tail.contains(head) || this->x() < -50 || this->y() < -50
+            || this->x() > board->SCREEN_SIZE.width() - 50 || this->y() > board->SCREEN_SIZE.height() - 50);
 }
