@@ -13,7 +13,7 @@ Q_OBJECT
 public:
     GameWindow(QWidget *parent = NULL);
 
-    void start();
+    void start(int score = 0);
 
     const QSize SCREEN_SIZE{1000, 500};
     QTimer timer;

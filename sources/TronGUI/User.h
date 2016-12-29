@@ -7,7 +7,11 @@
 class User : public Player {
 
 public:
-    User(GameWindow *gameBoard, QGraphicsItem *parent = NULL);
+    User(GameWindow *gameBoard, int score, QGraphicsItem *parent = NULL);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+
+    QPainterPath shape() const;
 
 private:
     void keyPressEvent(QKeyEvent *event);

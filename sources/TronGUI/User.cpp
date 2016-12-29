@@ -12,5 +12,29 @@ void User::keyPressEvent(QKeyEvent *event) {
     }
 }
 
-User::User(GameWindow *gameBoard, QGraphicsItem *parent) : Player(gameBoard, parent) {
+User::User(GameWindow *gameBoard, int score, QGraphicsItem *parent) : Player(gameBoard, score, parent) {
+//    speed = 100;
+//    tickCounter = 0;
+//    setRect(0, 0, 1, 1);
+    direction = RIGHT;
+    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    this->setFocus();
+}
+
+
+QPainterPath User::shape() const {
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(QRectF(0, 0, 1, 1));
+            foreach (QPointF p, tail) {
+            QPointF itemp = mapFromScene(p);
+            path.addRect(QRectF(itemp.x(), itemp.y(), 1, 1));
+        }
+    return path;
+}
+
+void User::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
+    painter->save();
+    painter->fillPath(shape(), Qt::yellow);
+    painter->restore();
 }

@@ -5,8 +5,18 @@
 
 class Computer : public Player {
 public:
-    Computer(GameWindow *gameBoard, QGraphicsItem *parent = NULL);
+    Computer(GameWindow *gameBoard, int score, QGraphicsItem *parent = NULL);
 
+    QPainterPath shape() const;
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+
+private:
+    Direction getChaos();
+
+public slots:
+
+    void advance(int step);
 };
 
 

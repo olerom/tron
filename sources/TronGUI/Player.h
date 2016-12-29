@@ -19,21 +19,14 @@ enum Direction {
 class Player : public QObject, public QGraphicsRectItem {
 Q_OBJECT
 public:
-
-    Player(GameWindow *gameBoard, QGraphicsItem *parent = NULL);
-
-    Direction direction;
+    Player(GameWindow *gameBoard, int score, QGraphicsItem *parent = NULL);
 
     QPointF head;
     QList<QPointF> tail;
-
-    QPainterPath shape() const;
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
-
-private:
-    GameWindow *board;
     int score;
+protected:
+    Direction direction;
+    GameWindow *board;
     int speed;
     int tickCounter;
 

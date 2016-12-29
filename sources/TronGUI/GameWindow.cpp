@@ -11,8 +11,7 @@ GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     qPalette.setBrush(this->backgroundRole(), QBrush(background));
     this->setPalette(qPalette);
 
-    timer.start();
-
+    timer.start(0);
     initScene();
 }
 
@@ -27,18 +26,21 @@ void GameWindow::menu() {
     exit();
 }
 
-void GameWindow::start() {
-    player = new User(this);
-    scene->addItem(player);
+void GameWindow::start(int score) {
+    this->player = new User(this, score);
+    this->computer = new Computer(this, score);
+    scene->addItem(this->player);
+    scene->addItem(this->computer);
     connect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 
 void GameWindow::clean() {
     disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
     scene->clear();
+    int score = player->score;
     initScene();
     scene->setSceneRect(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
-    start();
+    start(score);
 }
 
 void GameWindow::initScene() {
