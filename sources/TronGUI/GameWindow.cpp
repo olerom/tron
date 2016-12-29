@@ -11,12 +11,9 @@ GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     qPalette.setBrush(this->backgroundRole(), QBrush(background));
     this->setPalette(qPalette);
 
-    scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
-    setScene(scene);
-
-//    timer.setInterval(5);
     timer.start();
-//    timer.start(0);
+
+    initScene();
 }
 
 void GameWindow::exit() {
@@ -25,23 +22,26 @@ void GameWindow::exit() {
 
 void GameWindow::menu() {
     disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    std::cout << "in menu\n";
     MenuWindow *menu = new MenuWindow(0);
     menu->show();
-    this->close();
+    exit();
 }
 
 void GameWindow::start() {
-    scene->clear();
     player = new User(this);
     scene->addItem(player);
-//    disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
     connect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 
-
 void GameWindow::clean() {
-//    this->scene->clear();
-//    player->tail.clear();
-//    start();
+    disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    scene->clear();
+    initScene();
+    scene->setSceneRect(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
+    start();
+}
+
+void GameWindow::initScene() {
+    scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
+    setScene(scene);
 }

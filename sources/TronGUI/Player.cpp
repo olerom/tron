@@ -6,7 +6,7 @@
 Player::Player(GameWindow *gameBoard, QGraphicsItem *parent) {
     this->board = gameBoard;
     score = 0;
-    speed = 5;
+    speed = 50;
     tickCounter = 5;
     setRect(0, 0, 1, 1);
     direction = RIGHT;
@@ -14,9 +14,9 @@ Player::Player(GameWindow *gameBoard, QGraphicsItem *parent) {
     this->setFocus();
 }
 
-void Player::advance( int step) {
+void Player::advance(int step) {
     std::cout << "IN- ";
-    if (!step) {
+    if (!step || tickCounter++ % speed != 0) {
         return;
     }
 //    || tickCounter++ % speed != 0
@@ -41,14 +41,13 @@ void Player::advance( int step) {
     }
     setPos(head);
     if (isOver()) {
-//        if (++score == 3) {
-        std::cout << "_over_\n";
-//            board->menu();
-//        } else {
-//            board->clean();
-//        }
-//        QTimer::singleShot(0, board, SLOT(menu()));
-        board->menu();
+        if (++score == 3) {
+            std::cout << "_over_\n";
+            board->menu();
+        } else {
+            board->clean();
+//            board->start();
+        }
     }
     tail << head;
 

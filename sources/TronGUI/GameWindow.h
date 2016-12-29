@@ -6,7 +6,7 @@
 #include <QWidget>
 #include "Player.h"
 #include "User.h"
-//#include <GL\freeglut.h>
+#include "Computer.h"
 
 class GameWindow : public QGraphicsView {
 Q_OBJECT
@@ -16,16 +16,13 @@ public:
     void start();
 
     const QSize SCREEN_SIZE{1000, 500};
-
-
     QTimer timer;
     QGraphicsScene *scene;
 private:
-
-
+    Computer *computer;
     User *player;
 
-
+    void initScene();
 public slots:
 
     void exit();
@@ -33,7 +30,6 @@ public slots:
     void menu();
 
     void clean();
-
 };
 
 #endif
