@@ -2,7 +2,10 @@
 #include "Player.h"
 #include "GameWindow.h"
 
-Player::Player(GameWindow *gameBoard, int score, QGraphicsItem *parent) : board(gameBoard), score(score) {
+Player::Player(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsItem *parent) : board(gameBoard),
+                                                                                                 score(score),
+                                                                                                 anotherPlayer(
+                                                                                                         anotherPlayer) {
     speed = 100;
     tickCounter = 0;
 //    setRect(0, 0, 1, 1);
@@ -34,8 +37,8 @@ void Player::advance(int step) {
             break;
     }
     setPos(head);
-    if (isOver()) {
-        if (++score == 3) {
+    if (isOver(anotherPlayer)) {
+        if (++anotherPlayer->score == 3) {
             board->menu();
         } else {
             board->clean();
@@ -45,7 +48,8 @@ void Player::advance(int step) {
 
 }
 
-bool Player::isOver() {
+bool Player::isOver(Player *player) {
     return (tail.contains(head) || this->x() < -50 || this->y() < -50
-            || this->x() > board->SCREEN_SIZE.width() - 50 || this->y() > board->SCREEN_SIZE.height() - 50);
+            || this->x() > board->SCREEN_SIZE.width() - 50 || this->y() > board->SCREEN_SIZE.height() - 50
+            || player->tail.contains(head));
 }

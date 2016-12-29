@@ -7,9 +7,11 @@
 class User : public Player {
 
 public:
-    User(GameWindow *gameBoard, int score, QGraphicsItem *parent = NULL);
+    User(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsItem *parent = NULL);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+
+    void setEnemy(Player *player);
 
     QPainterPath shape() const;
 

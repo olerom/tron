@@ -19,7 +19,7 @@ enum Direction {
 class Player : public QObject, public QGraphicsRectItem {
 Q_OBJECT
 public:
-    Player(GameWindow *gameBoard, int score, QGraphicsItem *parent = NULL);
+    Player(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsItem *parent = NULL);
 
     QPointF head;
     QList<QPointF> tail;
@@ -29,8 +29,8 @@ protected:
     GameWindow *board;
     int speed;
     int tickCounter;
-
-    bool isOver();
+    Player *anotherPlayer;
+    bool isOver(Player *player);
 
 public slots:
 

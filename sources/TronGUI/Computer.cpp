@@ -1,10 +1,13 @@
 #include <iostream>
 #include "Computer.h"
+#include "GameWindow.h"
 
-Computer::Computer(GameWindow *gameBoard, int score, QGraphicsItem *parent) : Player(gameBoard, score, parent) {
-//    setRect(400, 400, 2, 2);
-    direction = UP;
-    setPos(400, 400);
+Computer::Computer(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsItem *parent) : Player(gameBoard,
+                                                                                                            score,
+                                                                                                            anotherPlayer,
+                                                                                                            parent) {
+    direction = LEFT;
+    setPos(gameBoard->SCREEN_SIZE.width() - 100, gameBoard->SCREEN_SIZE.height() >> 1);
 }
 
 void Computer::advance(int step) {
@@ -12,11 +15,6 @@ void Computer::advance(int step) {
     if (!step || tickCounter++ % speed != 0) {
         return;
     }
-
-//    Computer check();
-//    if (check.isOver())
-
-    direction = getChaos();
 
     switch (direction) {
         case UP:

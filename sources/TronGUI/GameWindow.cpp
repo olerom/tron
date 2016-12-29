@@ -27,8 +27,9 @@ void GameWindow::menu() {
 }
 
 void GameWindow::start(int score) {
-    this->player = new User(this, score);
-    this->computer = new Computer(this, score);
+    this->player = new User(this, score, computer);
+    this->computer = new Computer(this, score, player);
+    player->setEnemy(computer);
     scene->addItem(this->player);
     scene->addItem(this->computer);
     connect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
