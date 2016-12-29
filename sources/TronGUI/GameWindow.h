@@ -13,14 +13,15 @@ Q_OBJECT
 public:
     GameWindow(QWidget *parent = NULL);
 
-    void clean();
-
     void start();
 
     const QSize SCREEN_SIZE{1000, 500};
+
+
+    QTimer timer;
+    QGraphicsScene *scene;
 private:
 
-    QGraphicsScene *scene;
 
     User *player;
 
@@ -31,6 +32,8 @@ public slots:
 
     void menu();
 
+    void clean();
+
 };
 
-#endif //TRON_GAMEWINDOW_H
+#endif

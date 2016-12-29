@@ -22,8 +22,6 @@ public:
 
     Player(GameWindow *gameBoard, QGraphicsItem *parent = NULL);
 
-    void keyPressEvent(QKeyEvent *event);
-
     Direction direction;
 
     QPointF head;
@@ -36,11 +34,14 @@ public:
 private:
     GameWindow *board;
     int score;
+    int speed;
+    int tickCounter;
+
     bool isOver();
 
 public slots:
 
-    void keepMove();
+    void advance(int step);
 };
 
 

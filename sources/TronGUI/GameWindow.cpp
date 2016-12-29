@@ -13,8 +13,10 @@ GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
 
     scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
     setScene(scene);
-//    setFocus(Qt::OtherFocusReason);
-    setFocus();
+
+//    timer.setInterval(5);
+    timer.start();
+//    timer.start(0);
 }
 
 void GameWindow::exit() {
@@ -22,20 +24,19 @@ void GameWindow::exit() {
 }
 
 void GameWindow::menu() {
+    disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
     std::cout << "in menu\n";
     MenuWindow *menu = new MenuWindow(0);
     menu->show();
-    close();
+    this->close();
 }
 
 void GameWindow::start() {
+    scene->clear();
     player = new User(this);
-
     scene->addItem(player);
-
-    QTimer *timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), player, SLOT(keepMove()));
-    timer->start(10);
+//    disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    connect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 
 
