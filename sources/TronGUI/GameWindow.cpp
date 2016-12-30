@@ -6,10 +6,10 @@ GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);
     setWindowTitle(tr("Tron | Game"));
 
-    QPixmap background(":/grid.png");
-    QPalette qPalette;
-    qPalette.setBrush(this->backgroundRole(), QBrush(background));
-    this->setPalette(qPalette);
+//    QPixmap background(":/grid.png");
+//    QPalette qPalette;
+//    qPalette.setBrush(this->backgroundRole(), QBrush(background));
+//    this->setPalette(qPalette);
 
     timer.start(0);
     initScene();
@@ -42,25 +42,30 @@ void GameWindow::clean() {
     int scoreEnemy = computer->score;
     scene->clear();
     initScene();
-    scene->setSceneRect(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
+    scene->setSceneRect(0, 100, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
     start(scorePlayer, scoreEnemy);
 }
 
 void GameWindow::initScene() {
-    scene = new QGraphicsScene(0, 0, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 50);
+    scene = new QGraphicsScene(0, 100, SCREEN_SIZE.width() - 50, SCREEN_SIZE.height() - 250);
+    QPixmap background(":/grid.png");
+    scene->setBackgroundBrush(QBrush(background));
     setScene(scene);
 }
 
 void GameWindow::manageWin() {
     disconnect(&timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    if (QMessageBox::Yes == QMessageBox::information(NULL,
-                                                     tr("Game result"), tr("Once again result"),
-                                                     QMessageBox::Yes | QMessageBox::No,
-                                                     QMessageBox::Yes)) {
+    QMessageBox msgBox;
+    msgBox.tr("Tron | Game result");
+    msgBox.setText(player->score < 3 ? "Victory!" : "Defeat!");
+    QAbstractButton *noButton = msgBox.addButton(trUtf8("Main menu"), QMessageBox::NoRole);
+    QAbstractButton *yesButton = msgBox.addButton(trUtf8("Play again"), QMessageBox::YesRole);
+    msgBox.exec();
+    if (msgBox.clickedButton() == yesButton) {
         player->score = 0;
         computer->score = 0;
         clean();
-    } else {
+    } else if (msgBox.clickedButton() == noButton) {
         menu();
     }
 }

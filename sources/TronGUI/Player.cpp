@@ -6,12 +6,17 @@ Player::Player(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphic
                                                                                                  score(score),
                                                                                                  anotherPlayer(
                                                                                                          anotherPlayer) {
-    speed = 100;
+    speed = 2000;
     tickCounter = 0;
+    QRectF qRectF = QRectF(0, 0, 5, 5);
+    setRect(qRectF);
 }
 
 void Player::advance(int step) {
-    if (!step || tickCounter++ % speed != 0) {
+    if (!step) {
+        return;
+    }
+    if (tickCounter++ % speed != 0) {
         return;
     }
     makeMove();
@@ -31,18 +36,18 @@ void Player::makeMove() {
     switch (direction) {
         case UP:
             head.setX(x());
-            head.setY(y() - 1);
+            head.setY(y() - 5);
             break;
         case DOWN:
             head.setX(x());
-            head.setY(y() + 1);
+            head.setY(y() + 5);
             break;
         case LEFT:
-            head.setX(x() - 1);
+            head.setX(x() - 5);
             head.setY(y());
             break;
         case RIGHT:
-            head.setX(x() + 1);
+            head.setX(x() + 5);
             head.setY(y());
             break;
     }
@@ -50,8 +55,7 @@ void Player::makeMove() {
 
 void Player::manageScores() {
     if (isOver(anotherPlayer)) {
-        if (++anotherPlayer->score == 3) {
-//            QTimer::singleShot(0, board, SLOT(menu()));
+        if (++score == 3) {
             QTimer::singleShot(0, board, SLOT(manageWin()));
         } else {
             QTimer::singleShot(0, board, SLOT(clean()));

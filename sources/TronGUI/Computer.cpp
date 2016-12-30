@@ -44,7 +44,7 @@ QPainterPath Computer::shape() const {
     path.setFillRule(Qt::WindingFill);
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
-            path.addRect(QRectF(itemp.x(), itemp.y(), 2, 2));
+            path.addRect(QRectF(itemp.x(), itemp.y(), 5, 5));
         }
     return path;
 }
