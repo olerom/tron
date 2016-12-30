@@ -51,7 +51,8 @@ void Player::makeMove() {
 void Player::manageScores() {
     if (isOver(anotherPlayer)) {
         if (++anotherPlayer->score == 3) {
-            QTimer::singleShot(0, board, SLOT(menu()));
+//            QTimer::singleShot(0, board, SLOT(menu()));
+            QTimer::singleShot(0, board, SLOT(manageWin()));
         } else {
             QTimer::singleShot(0, board, SLOT(clean()));
         }

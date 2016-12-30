@@ -30,6 +30,8 @@ public slots:
     void menu();
 
     void clean();
+
+    void manageWin();
 };
 
 #endif
