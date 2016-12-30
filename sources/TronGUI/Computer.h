@@ -5,7 +5,7 @@
 
 class Computer : public Player {
 public:
-    Computer(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsItem *parent = NULL);
+    Computer(GameWindow *gameBoard, int score, Player *anotherPlayer = NULL, QGraphicsItem *parent = NULL);
 
     QPainterPath shape() const;
 

@@ -8,10 +8,6 @@ Player::Player(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphic
                                                                                                          anotherPlayer) {
     speed = 100;
     tickCounter = 0;
-//    setRect(0, 0, 1, 1);
-//    direction = RIGHT;
-//    this->setFlag(QGraphicsItem::ItemIsFocusable);
-//    this->setFocus();
 }
 
 void Player::advance(int step) {
@@ -20,13 +16,7 @@ void Player::advance(int step) {
     }
     makeMove();
     setPos(head);
-    if (isOver(anotherPlayer)) {
-        if (++anotherPlayer->score == 3) {
-            board->menu();
-        } else {
-            board->clean();
-        }
-    }
+    manageScores();
     tail << head;
 
 }
@@ -56,4 +46,31 @@ void Player::makeMove() {
             head.setY(y());
             break;
     }
+}
+
+void Player::manageScores() {
+    if (isOver(anotherPlayer)) {
+        if (++anotherPlayer->score == 3) {
+            QTimer::singleShot(0, board, SLOT(menu()));
+        } else {
+            QTimer::singleShot(0, board, SLOT(clean()));
+        }
+    }
+}
+
+
+void Player::setEnemy(Player *player) {
+    anotherPlayer = player;
+}
+
+Player &Player::operator=(const Player &player) {
+    score = player.score;
+    board = player.board;
+    direction = player.direction;
+    anotherPlayer = player.anotherPlayer;
+    head = player.head;
+    speed = player.speed;
+    tickCounter = player.tickCounter;
+    tail = player.tail;
+    setPos(player.x(), player.y());
 }

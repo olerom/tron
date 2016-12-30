@@ -26,7 +26,6 @@ User::User(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsIte
 QPainterPath User::shape() const {
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
-//    path.addRect(QRectF(300, 0, 1, 1));
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
             path.addRect(QRectF(itemp.x(), itemp.y(), 2, 2));
@@ -38,8 +37,4 @@ void User::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     painter->save();
     painter->fillPath(shape(), Qt::yellow);
     painter->restore();
-}
-
-void User::setEnemy(Player *player) {
-    anotherPlayer = player;
 }

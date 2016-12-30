@@ -11,26 +11,16 @@ Computer::Computer(GameWindow *gameBoard, int score, Player *anotherPlayer, QGra
 }
 
 void Computer::advance(int step) {
-
     if (!step || tickCounter++ % speed != 0) {
         return;
     }
-
     checkMovement();
 
     makeMove();
     setPos(head);
 
-    if (isOver(anotherPlayer)) {
-        if (++score == 3) {
-            board->menu();
-        } else {
-            board->clean();
-        }
-    }
+    manageScores();
     tail << head;
-
-
 }
 
 Direction Computer::getChaos() {
@@ -87,7 +77,6 @@ void Computer::checkMovement() {
         check.setPos(head);
         check.direction = direction;
         check.makeMove();
-
         if (check.isOver(anotherPlayer)) {
             changeWay();
         }
