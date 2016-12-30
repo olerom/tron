@@ -14,6 +14,9 @@ public:
 private:
     Direction getChaos();
 
+    void changeWay();
+    void checkMovement();
+
 public slots:
 
     void advance(int step);

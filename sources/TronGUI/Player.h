@@ -24,6 +24,7 @@ public:
     QPointF head;
     QList<QPointF> tail;
     int score;
+    void makeMove();
 protected:
     Direction direction;
     GameWindow *board;

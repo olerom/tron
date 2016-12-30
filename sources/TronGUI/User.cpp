@@ -26,10 +26,10 @@ User::User(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphicsIte
 QPainterPath User::shape() const {
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
-    path.addRect(QRectF(300, 0, 1, 1));
+//    path.addRect(QRectF(300, 0, 1, 1));
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
-            path.addRect(QRectF(itemp.x(), itemp.y(), 1, 1));
+            path.addRect(QRectF(itemp.x(), itemp.y(), 2, 2));
         }
     return path;
 }

@@ -16,33 +16,18 @@ void Computer::advance(int step) {
         return;
     }
 
-    switch (direction) {
-        case UP:
-            head.setX(x());
-            head.setY(y() - 1);
-            break;
-        case DOWN:
-            head.setX(x());
-            head.setY(y() + 1);
-            break;
-        case LEFT:
-            head.setX(x() - 1);
-            head.setY(y());
-            break;
-        case RIGHT:
-            head.setX(x() + 1);
-            head.setY(y());
-            break;
-    }
+    checkMovement();
+
+    makeMove();
     setPos(head);
-    std::cout << x() << " " << y() << "\n";
-//    if (isOver()) {
-//        if (++score == 3) {
-//            board->menu();
-//        } else {
-//            board->clean();
-//        }
-//    }
+
+    if (isOver(anotherPlayer)) {
+        if (++score == 3) {
+            board->menu();
+        } else {
+            board->clean();
+        }
+    }
     tail << head;
 
 
@@ -67,10 +52,9 @@ Direction Computer::getChaos() {
 QPainterPath Computer::shape() const {
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
-    path.addRect(QRectF(400, 400, 10, 10));
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
-            path.addRect(QRectF(itemp.x(), itemp.y(), 1, 1));
+            path.addRect(QRectF(itemp.x(), itemp.y(), 2, 2));
         }
     return path;
 }
@@ -80,4 +64,32 @@ void Computer::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     painter->save();
     painter->fillPath(this->shape(), Qt::red);
     painter->restore();
+}
+
+void Computer::changeWay() {
+    if (direction == UP) {
+        direction = RIGHT;
+    } else if (direction == RIGHT) {
+        direction = DOWN;
+    } else if (direction == DOWN) {
+        direction = LEFT;
+    } else if (direction == LEFT) {
+        direction = UP;
+    }
+}
+
+void Computer::checkMovement() {
+    if (!tail.isEmpty()) {
+        Computer check(this->board, 0, anotherPlayer);
+        for (int i = 0; i < tail.size(); i++) {
+            check.tail << tail[i];
+        }
+        check.setPos(head);
+        check.direction = direction;
+        check.makeMove();
+
+        if (check.isOver(anotherPlayer)) {
+            changeWay();
+        }
+    }
 }
