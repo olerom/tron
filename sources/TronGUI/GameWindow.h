@@ -15,7 +15,10 @@ public:
 
     void start(int scorePlayer = 0, int scoreEnemy = 0);
 
-    const QSize SCREEN_SIZE{1000, 500};
+    const QSize SCREEN_SIZE{1060, 600};
+
+    const QSize GRAPHIC_ZONE_SIZE{1060, 500};
+
     QTimer timer;
     QGraphicsScene *scene;
 private:
@@ -23,6 +26,7 @@ private:
     User *player;
 
     void initScene();
+
 public slots:
 
     void exit();

@@ -27,8 +27,8 @@ void Player::advance(int step) {
 }
 
 bool Player::isOver(Player *player) {
-    return (tail.contains(head) || this->x() < -50 || this->y() < -50
-            || this->x() > board->SCREEN_SIZE.width() - 50 || this->y() > board->SCREEN_SIZE.height() - 50
+    return (tail.contains(head) || head.x() < 0 || head.y() < 0
+            || head.x() > board->GRAPHIC_ZONE_SIZE.width() || head.y() > board->GRAPHIC_ZONE_SIZE.height()
             || player->tail.contains(head)) || player->head == head;
 }
 
@@ -66,16 +66,4 @@ void Player::manageScores() {
 
 void Player::setEnemy(Player *player) {
     anotherPlayer = player;
-}
-
-Player &Player::operator=(const Player &player) {
-    score = player.score;
-    board = player.board;
-    direction = player.direction;
-    anotherPlayer = player.anotherPlayer;
-    head = player.head;
-    speed = player.speed;
-    tickCounter = player.tickCounter;
-    tail = player.tail;
-    setPos(player.x(), player.y());
 }

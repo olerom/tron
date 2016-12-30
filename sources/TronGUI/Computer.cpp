@@ -25,16 +25,16 @@ void Computer::advance(int step) {
 
 Direction Computer::getChaos() {
     int choice = rand() % 4;
-//    switch (choice) {
-//        case 0:
-//            return UP;
-//        case 1:
-//            return RIGHT;
-//        case 2:
-//            return DOWN;
-//        case 3:
-//            return LEFT;
-//    }
+    switch (choice) {
+        case 0:
+            return UP;
+        case 1:
+            return RIGHT;
+        case 2:
+            return DOWN;
+        case 3:
+            return LEFT;
+    }
     return direction;
 }
 
@@ -57,25 +57,35 @@ void Computer::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
 }
 
 void Computer::changeWay() {
-    if (direction == UP) {
-        direction = RIGHT;
-    } else if (direction == RIGHT) {
-        direction = DOWN;
-    } else if (direction == DOWN) {
-        direction = LEFT;
-    } else if (direction == LEFT) {
-        direction = UP;
+    int choice = rand() % 2;
+    switch (direction) {
+        case UP:
+        case DOWN:
+            if (choice == 0) {
+                direction = RIGHT;
+            } else {
+                direction = LEFT;
+            }
+            break;
+        case LEFT:
+        case RIGHT:
+            if (choice == 0) {
+                direction = DOWN;
+            } else {
+                direction = UP;
+            }
     }
 }
 
 void Computer::checkMovement() {
     if (!tail.isEmpty()) {
-        Computer check(this->board, 0, anotherPlayer);
+        Computer check(board, 0, anotherPlayer);
         for (int i = 0; i < tail.size(); i++) {
-            check.tail << tail[i];
+            check.tail << tail.at(i);
         }
-        check.setPos(head);
         check.direction = direction;
+        check.head = head;
+        check.setPos(head);
         check.makeMove();
         if (check.isOver(anotherPlayer)) {
             changeWay();

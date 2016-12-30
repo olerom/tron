@@ -3,5 +3,6 @@
     <qresource prefix="/">
         <file>grid.png</file>
         <file>tron_logo.png</file>
+        <file>score_background.png</file>
     </qresource>
 </RCC>

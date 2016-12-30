@@ -29,7 +29,6 @@ public:
 
     void setEnemy(Player *player);
 
-    Player &operator=(const Player &player);
     Direction direction;
     GameWindow *board;
     int speed;
