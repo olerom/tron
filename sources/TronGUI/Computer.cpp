@@ -14,8 +14,10 @@ void Computer::advance(int step) {
     if (!step || tickCounter++ % speed != 0) {
         return;
     }
-    checkMovement();
 
+//    direction = getChaos();
+
+    checkMovement();
     makeMove();
     setPos(head);
 
@@ -24,18 +26,16 @@ void Computer::advance(int step) {
 }
 
 Direction Computer::getChaos() {
-    int choice = rand() % 4;
-    switch (choice) {
-        case 0:
-            return UP;
-        case 1:
-            return RIGHT;
-        case 2:
-            return DOWN;
-        case 3:
-            return LEFT;
+    if (rand() % 1000 == 0) {
+        switch (direction) {
+            case UP:
+            case DOWN:
+                return rand() % 2 == 0 ? RIGHT : LEFT;
+            case LEFT:
+            case RIGHT:
+                return rand() % 2 == 0 ? UP : DOWN;
+        }
     }
-    return direction;
 }
 
 
@@ -44,7 +44,7 @@ QPainterPath Computer::shape() const {
     path.setFillRule(Qt::WindingFill);
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
-            path.addRect(QRectF(itemp.x(), itemp.y(), 5, 5));
+            path.addRect(QRectF(itemp.x(), itemp.y(), board->RIDER_SIZE.width(), board->RIDER_SIZE.height()));
         }
     return path;
 }

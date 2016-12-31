@@ -16,8 +16,9 @@ public:
     void start(int scorePlayer = 0, int scoreEnemy = 0);
 
     const QSize SCREEN_SIZE{1060, 600};
+    const QSize GRAPHIC_ZONE_SIZE{1055, 595};
 
-    const QSize GRAPHIC_ZONE_SIZE{1060, 500};
+    const QSize RIDER_SIZE{5, 5};
 
     QTimer timer;
     QGraphicsScene *scene;
@@ -36,6 +37,8 @@ public slots:
     void clean();
 
     void manageWin();
+
+    void battleSection();
 };
 
 #endif

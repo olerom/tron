@@ -28,7 +28,7 @@ QPainterPath User::shape() const {
     path.setFillRule(Qt::WindingFill);
             foreach (QPointF p, tail) {
             QPointF itemp = mapFromScene(p);
-            path.addRect(QRectF(itemp.x(), itemp.y(), 5, 5));
+            path.addRect(QRectF(itemp.x(), itemp.y(), board->RIDER_SIZE.width(), board->RIDER_SIZE.height()));
         }
     return path;
 }

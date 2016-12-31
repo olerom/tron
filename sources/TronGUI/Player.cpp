@@ -8,7 +8,7 @@ Player::Player(GameWindow *gameBoard, int score, Player *anotherPlayer, QGraphic
                                                                                                          anotherPlayer) {
     speed = 2000;
     tickCounter = 0;
-    QRectF qRectF = QRectF(0, 0, 5, 5);
+    QRectF qRectF = QRectF(0, 0, board->RIDER_SIZE.width(), board->RIDER_SIZE.height());
     setRect(qRectF);
 }
 
@@ -36,18 +36,18 @@ void Player::makeMove() {
     switch (direction) {
         case UP:
             head.setX(x());
-            head.setY(y() - 5);
+            head.setY(y() - board->RIDER_SIZE.height());
             break;
         case DOWN:
             head.setX(x());
-            head.setY(y() + 5);
+            head.setY(y() + board->RIDER_SIZE.height());
             break;
         case LEFT:
-            head.setX(x() - 5);
+            head.setX(x() - board->RIDER_SIZE.width());
             head.setY(y());
             break;
         case RIGHT:
-            head.setX(x() + 5);
+            head.setX(x() + board->RIDER_SIZE.width());
             head.setY(y());
             break;
     }
@@ -55,10 +55,10 @@ void Player::makeMove() {
 
 void Player::manageScores() {
     if (isOver(anotherPlayer)) {
-        if (++score == 3) {
+        if (++anotherPlayer->score == 3) {
             QTimer::singleShot(0, board, SLOT(manageWin()));
         } else {
-            QTimer::singleShot(0, board, SLOT(clean()));
+            QTimer::singleShot(0, board, SLOT(battleSection()));
         }
     }
 }
