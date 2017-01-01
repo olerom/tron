@@ -3,6 +3,7 @@
 
 #include <QtGui/QKeyEvent>
 #include "Player.h"
+#include "GameWindow.h"
 
 class User : public Player {
 
@@ -10,6 +11,7 @@ public:
     User(GameWindow *gameBoard, int score, Player *anotherPlayer = NULL, QGraphicsItem *parent = NULL);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
+
     QPainterPath shape() const;
 
 private:

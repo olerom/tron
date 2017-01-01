@@ -6,12 +6,12 @@
 #include <QGraphicsScene>
 #include <QWidget>
 #include <QtWidgets/QPushButton>
+#include "GameWindow.h"
 
 class MenuWindow : public QGraphicsView {
 Q_OBJECT
 public:
     MenuWindow(QWidget *parent = NULL);
-
 
 private:
 

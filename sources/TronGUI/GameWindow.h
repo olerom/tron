@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "User.h"
 #include "Computer.h"
+#include "MenuWindow.h"
+#include <QtWidgets/QMessageBox>
 
 class GameWindow : public QGraphicsView {
 Q_OBJECT
@@ -20,9 +22,9 @@ public:
 
     const QSize RIDER_SIZE{5, 5};
 
+private:
     QTimer timer;
     QGraphicsScene *scene;
-private:
     Computer *computer;
     User *player;
 

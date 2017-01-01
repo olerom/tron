@@ -1,16 +1,8 @@
-#include <QtWidgets/QMessageBox>
 #include "GameWindow.h"
-#include "MenuWindow.h"
 
 GameWindow::GameWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);
     setWindowTitle(tr("Tron | Game"));
-
-//    QPixmap background(":/score_background.png");
-//    QPalette qPalette;
-//    qPalette.setBrush(this->backgroundRole(), QBrush(background));
-//    this->setPalette(qPalette);
-
     initScene();
     timer.start(0);
 }
@@ -43,10 +35,6 @@ void GameWindow::clean() {
     int scoreEnemy = computer->score;
     scene->clear();
     initScene();
-//    scene->setSceneRect((SCREEN_SIZE.width() - GRAPHIC_ZONE_SIZE.width()) >> 1,
-//                        (SCREEN_SIZE.height() - GRAPHIC_ZONE_SIZE.height()) >> 1 - RIDER_SIZE.height(),
-//                        GRAPHIC_ZONE_SIZE.width(),
-//                        GRAPHIC_ZONE_SIZE.height());
     start(scorePlayer, scoreEnemy);
 }
 
@@ -65,13 +53,13 @@ void GameWindow::manageWin() {
     QMessageBox msgBox;
     msgBox.setFixedSize(400, 200);
     msgBox.setWindowTitle("Tron | Game result");
-    msgBox.setText(player->score == 3 ? "Victory!" : "Defeat!");
+    msgBox.setText(player->getScore() == 3 ? "Victory!" : "Defeat!");
     QAbstractButton *noButton = msgBox.addButton(trUtf8("Main menu"), QMessageBox::YesRole);
     QAbstractButton *yesButton = msgBox.addButton(trUtf8("Play again"), QMessageBox::NoRole);
     msgBox.exec();
     if (msgBox.clickedButton() == yesButton) {
-        player->score = 0;
-        computer->score = 0;
+        player->setScore(0);
+        computer->setScore(0);
         clean();
     } else if (msgBox.clickedButton() == noButton) {
         menu();
@@ -83,8 +71,8 @@ void GameWindow::battleSection() {
     QMessageBox msgBox;
     msgBox.setFixedSize(400, 200);
     msgBox.setWindowTitle("Tron | Round result");
-    QString qString("Your score: " + QString::number(player->score) +
-                    "\n Enemy score: " + QString::number(computer->score));
+    QString qString("Your score: " + QString::number(player->getScore()) +
+                    "\n Enemy score: " + QString::number(computer->getScore()));
     msgBox.setText(qString);
     QAbstractButton *button = msgBox.addButton(trUtf8("Next round"), QMessageBox::YesRole);
     msgBox.exec();

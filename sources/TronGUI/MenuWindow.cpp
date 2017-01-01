@@ -1,5 +1,4 @@
 #include "MenuWindow.h"
-#include "GameWindow.h"
 
 MenuWindow::MenuWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setFixedSize(SCREEN_SIZE);
@@ -10,7 +9,6 @@ MenuWindow::MenuWindow(QWidget *parent) : QGraphicsView(parent) {
     this->setPalette(qPalette);
 
     QWidget *frame = new QWidget(this);
-//    frame->setGeometry(SCREEN_SIZE.width() >> 1, SCREEN_SIZE.height() >> 2, 800, 310);
     frame->setGeometry(100, 0, 800, 310);
     frame->setStyleSheet("background-image: url(:/tron_logo.png)");
 

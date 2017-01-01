@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Player.h"
 #include "GameWindow.h"
 
@@ -66,4 +65,12 @@ void Player::manageScores() {
 
 void Player::setEnemy(Player *player) {
     anotherPlayer = player;
+}
+
+int Player::setScore(int score) {
+    this->score = score;
+}
+
+int Player::getScore() {
+    return this->score;
 }

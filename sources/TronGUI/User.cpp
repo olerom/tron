@@ -1,5 +1,4 @@
 #include "User.h"
-#include "GameWindow.h"
 
 void User::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Left && direction != RIGHT) {

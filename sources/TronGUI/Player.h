@@ -21,21 +21,24 @@ Q_OBJECT
 public:
     Player(GameWindow *gameBoard, int score, Player *anotherPlayer = NULL, QGraphicsItem *parent = NULL);
 
-    QPointF head;
-    QList<QPointF> tail;
     int score;
 
     void makeMove();
 
     void setEnemy(Player *player);
 
+    int getScore();
+
+    int setScore(int score);
+
+protected:
+    QPointF head;
+    QList<QPointF> tail;
     Direction direction;
     GameWindow *board;
     int speed;
     int tickCounter;
     Player *anotherPlayer;
-
-protected:
 
     bool isOver(Player *player);
 
