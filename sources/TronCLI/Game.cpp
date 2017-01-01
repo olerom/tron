@@ -4,7 +4,6 @@ void Game::run() {
     Map map(20, 80);
     User player(map.getWidth() >> 2, map.getHeight() >> 1, RIGHT, 0, map);
     Computer computer(3 * (map.getWidth() >> 2), map.getHeight() >> 1, LEFT, 0, map);
-
     while (true) {
         clearScreen();
 

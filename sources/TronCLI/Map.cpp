@@ -9,7 +9,6 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
     std::cout << RED << "Second player: " << secondPlayer.getScore() << RESET << std::endl;
     // To here
 
-
     for (int i = 0; i < this->getWidth(); i++) {
         std::cout << "▄";
     }
@@ -40,7 +39,7 @@ void Map::draw(Player firstPlayer, Player secondPlayer) {
     std::cout << std::endl;
 }
 
-Map::Map(int height, int widthd) {
+Map::Map(int height, int width) {
     this->height = height;
     this->width = width;
 }

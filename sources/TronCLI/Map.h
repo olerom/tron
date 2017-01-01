@@ -9,6 +9,8 @@ class Map {
 public:
     Map(int height, int width);
 
+    ~Map() {};
+
     void draw(Player firstPlayer, Player secondPlayer);
 
     int getWidth();

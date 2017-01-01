@@ -15,19 +15,9 @@ class Game {
 public:
     Game(int speed) : speed(speed) {};
 
-    ~Game() {}
-
-    void run();
-
-    void winMenu(int switcher);
-
-    void loseMenu(int switcher);
-
-    int settings();
+    ~Game() {};
 
     void startMenu(int switcher);
-
-    void clearScreen();
 
     bool static checkOver(Player firstPlayer, Map map, Player secondPlayer);
 
@@ -40,6 +30,16 @@ public:
     int getSpeed();
 
 private:
+    void run();
+
+    void clearScreen();
+
+    void winMenu(int switcher);
+
+    void loseMenu(int switcher);
+
+    int settings();
+
     int speed;
 };
 
